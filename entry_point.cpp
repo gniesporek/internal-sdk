@@ -1,8 +1,12 @@
 #include "core/utils/utils.h"
+#include "core/schema/schema.h"
+#include "valve/interfaces/interfaces.h"
 
 unsigned long EntryPoint(HMODULE hModule)
 {
     utils.console.attach();
+    interfaces.setup();
+    schema_manager.setup();
 
     while(!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));

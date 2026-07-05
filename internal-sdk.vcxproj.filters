@@ -63,6 +63,12 @@
     <ClCompile Include="ext\minhook\trampoline.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\schema\schema.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="valve\interfaces\interfaces.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -423,6 +429,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ext\minhook\trampoline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\schema\schema.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\interfaces\interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\interfaces\schema_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

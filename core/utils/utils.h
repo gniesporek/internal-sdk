@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <thread>
 #include <vector>
+#include <unordered_map>
 
 enum class ConsoleColor : WORD {
     Default = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE,
@@ -17,6 +18,10 @@ enum class ConsoleColor : WORD {
 #define MESSAGE_INFO(...) utils.console.log_to_console(ConsoleColor::Info,"[INFO] ",__FILE__,__LINE__,__VA_ARGS__);
 #define MESSAGE_SUCCESS(...) utils.console.log_to_console(ConsoleColor::Success,"[SUCCESS] ",__FILE__,__LINE__,__VA_ARGS__);
 #define MESSAGE_ERROR(...) utils.console.log_to_console(ConsoleColor::Error,"[ERROR] ",__FILE__,__LINE__,__VA_ARGS__);
+
+#define PAD_CONCAT(a, b) a##b
+#define PAD_MAKE(a, b) PAD_CONCAT(a, b)
+#define PAD(size) char PAD_MAKE(pad_, __COUNTER__)[size];
 
 class Utils {
 public:

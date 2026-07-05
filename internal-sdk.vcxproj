@@ -103,6 +103,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\schema\schema.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="ext\imgui\imgui.cpp" />
@@ -117,8 +118,10 @@
     <ClCompile Include="ext\minhook\hde\hde64.cpp" />
     <ClCompile Include="ext\minhook\hook.cpp" />
     <ClCompile Include="ext\minhook\trampoline.cpp" />
+    <ClCompile Include="valve\interfaces\interfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\schema\schema.h" />
     <ClInclude Include="core\utils\utils.h" />
     <ClInclude Include="ext\freetype\include\dlg\dlg.h" />
     <ClInclude Include="ext\freetype\include\dlg\output.h" />
@@ -239,6 +242,8 @@
     <ClInclude Include="ext\minhook\hde\table64.h" />
     <ClInclude Include="ext\minhook\minhook.h" />
     <ClInclude Include="ext\minhook\trampoline.h" />
+    <ClInclude Include="valve\interfaces\interfaces.h" />
+    <ClInclude Include="valve\interfaces\schema_system.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="ext\freetype\freetype.lib" />
