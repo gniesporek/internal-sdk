@@ -2,7 +2,7 @@
 
 bool __fastcall MouseInput::hkMouseInput(void* a1)
 {
-	if (ui.isToggled)
+	if (UI::Toggled)
 		return false;
 
 	return oMouseInput(a1);

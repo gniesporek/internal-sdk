@@ -5,17 +5,19 @@
 
 unsigned long EntryPoint(HMODULE hModule)
 {
-    utils.console.attach();
-    utils.sdl3.setup();
-    interfaces.setup();
-    schemaManager.setup();
-    hooksManager.setup();
+    Utils::Console::Attach();
+    Utils::SDL3::Setup();
+    Interfaces::Setup();
+
+
+    SchemaManager::Setup();
+    HooksManager::Setup();
 
     while(!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-	utils.console.destroy();
-    hooksManager.destroy();
+	Utils::Console::Destroy();
+    HooksManager::Destroy();
 
     FreeLibraryAndExitThread(hModule, 0);
 }

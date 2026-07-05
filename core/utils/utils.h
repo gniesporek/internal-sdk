@@ -14,10 +14,10 @@ enum class ConsoleColor : WORD {
     FileLine = FOREGROUND_RED | FOREGROUND_GREEN
 };
 
-#define MESSAGE(...) utils.console.logToConsole(ConsoleColor::Default,"[LOG] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_INFO(...) utils.console.logToConsole(ConsoleColor::Info,"[INFO] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_SUCCESS(...) utils.console.logToConsole(ConsoleColor::Success,"[SUCCESS] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_ERROR(...) utils.console.logToConsole(ConsoleColor::Error,"[ERROR] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE(...) Utils::Console::LogToConsole(ConsoleColor::Default,"[LOG] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_INFO(...) Utils::Console::LogToConsole(ConsoleColor::Info,"[INFO] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_SUCCESS(...) Utils::Console::LogToConsole(ConsoleColor::Success,"[SUCCESS] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_ERROR(...) Utils::Console::LogToConsole(ConsoleColor::Error,"[ERROR] ",__FILE__,__LINE__,__VA_ARGS__);
 
 #define PAD_CONCAT(a, b) a##b
 #define PAD_MAKE(a, b) PAD_CONCAT(a, b)
@@ -27,37 +27,32 @@ class Utils {
 public:
     class Console {
     public:
-        void attach();
-        void destroy();
-		void logToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...);
+        static void Attach();
+        static void Destroy();
+        static void LogToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...);
     private:
-        FILE* file = nullptr;
+        static inline FILE* file = nullptr;
     };
-    
+
     class SDL3 {
     public:
-        bool setup();
+        static bool Setup();
         typedef int(__stdcall* fnWarpMouseInWindow)(void*, float, float y);
-		fnWarpMouseInWindow warpMouseInWindow = nullptr;
+        static inline fnWarpMouseInWindow warpMouseInWindow = nullptr;
     };
-	SDL3 sdl3;
 
     class Memory {
     public:
         template <typename T, typename ... U>
-        T callVMT(void* thisptr, const size_t index, U ... params)
+        T CallVMT(void* thisptr, const size_t index, U ... params)
         {
             typedef T(__thiscall* Fn)(void*, decltype(params)...);
             return (*static_cast<Fn**>(thisptr))[index](thisptr, params...);
         }
-        void* getVMT(void* classBase, std::size_t index);
-        uint8_t* signatureScan(const char* moduleName, const char* pattern);
-        uint8_t* relativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize);
+        static void* GetVMT(void* classBase, std::size_t index);
+        static uint8_t* SignatureScan(const char* moduleName, const char* pattern);
+        static uint8_t* RelativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize);
     private:
-        std::vector<std::uint32_t> signatureToByte(const char* pattern);
+        static std::vector<std::uint32_t> SignatureToByte(const char* pattern);
     };
-
-    Console console;
-    Memory memory;
 };
-inline Utils utils;

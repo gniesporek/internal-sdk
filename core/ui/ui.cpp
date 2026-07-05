@@ -1,45 +1,43 @@
 #include "ui.h"
 
 
-void UI::paint()
+void UI::Setup()
 {
-    if (!UI::isToggled)
+    if (!UI::Toggled)
         return;
 
+    if (UI::Toggled)
+		Draw::Rect::Fill(Vector2D(WindowPosition.x, WindowPosition.y), Vector2D(WindowSize.x, WindowSize.y), Colors(0, 0, 0, 100));
 
-    if (UI::isToggled)
-		drawingSystem.rect.fill(Vector2D(0, 0), Vector2D(ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y), Colors(0, 0, 0, 25));
-
-
-    UI::setup();
+    UI::Start();
 
 
-    UI::end();
+    UI::End();
 }
 
-void UI::setup()
+void UI::Start()
 {
     auto& io = ImGui::GetIO();
 
-    ImVec2 centeredPos = ImVec2((io.DisplaySize.x - width) * 0.5f, (io.DisplaySize.y - height) * 0.5f);
+    ImVec2 centeredPos = ImVec2((io.DisplaySize.x - Width) * 0.5f, (io.DisplaySize.y - Height) * 0.5f);
 
-    if (!initialize) {
-        windowPosition = Vector2D(centeredPos.x, centeredPos.y);
-        windowSize = Vector2D(width, height);
-        initialize = true;
+    if (!Initialize) {
+        WindowPosition = Vector2D(centeredPos.x, centeredPos.y);
+        WindowSize = Vector2D(Width, Height);
+        Initialize = true;
     }
 
-    ImGui::SetNextWindowPos(ImVec2(windowPosition.x, windowPosition.y), ImGuiCond_Always);
-    ImGui::SetNextWindowSize(ImVec2(windowSize.x, windowSize.y), ImGuiCond_Always);
+    ImGui::SetNextWindowPos(ImVec2(WindowPosition.x, WindowPosition.y), ImGuiCond_Always);
+    ImGui::SetNextWindowSize(ImVec2(WindowSize.x, WindowSize.y), ImGuiCond_Always);
 
     ImGuiStyle& style = ImGui::GetStyle();
     style.WindowBorderSize = 0;
     style.Colors[ImGuiCol_WindowBg] = ImVec4(0, 0, 0, 0);
 
-    ImGui::Begin("FrameWork", nullptr, windowFlags);
+    ImGui::Begin("FrameWork", nullptr, WindowFlags);
 
-    Vector2D pos = windowPosition;
-    Vector2D size = windowSize;
+    Vector2D pos = WindowPosition;
+    Vector2D size = WindowSize;
     Vector2D mousePos(io.MousePos.x, io.MousePos.y);
 
     ImGui::SetCursorPos(ImVec2(0, 0));
@@ -49,14 +47,14 @@ void UI::setup()
     bool leftDown = io.MouseDown[0];
 
     if (dragActive && leftDown) {
-        if (!isDragged) {
-            isDragged = true;
-            dragDelta = mousePos - pos;
+        if (!IsDragging) {
+            IsDragging = true;
+            DragDelta = mousePos - pos;
         }
-        pos = mousePos - dragDelta;
+        pos = mousePos - DragDelta;
     }
     else {
-        isDragged = false;
+        IsDragging = false;
     }
 
     if (pos.x < 0) pos.x = 0;
@@ -66,10 +64,10 @@ void UI::setup()
 
     ImGui::SetWindowPos(ImVec2(pos.x, pos.y));
 
-    windowPosition = pos;
+    WindowPosition = pos;
 }
 
-void UI::end()
+void UI::End()
 {
     ImGui::End();
 }

@@ -2,23 +2,23 @@
 
 HRESULT __stdcall PresentScene::hkPresentScene(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
-    if (!renderer.isRendererReady)
-        renderer.setup(pSwapChain);
+    if (!Renderer::m_bInitialized)
+        Renderer::Setup(pSwapChain);
 
-    renderer.beginScene();
+    Renderer::BeginScene();
 
-    renderStackSystem.renderDrawData(ImGui::GetBackgroundDrawList());
+    RenderStackSystem::RenderDrawData(ImGui::GetBackgroundDrawList());
 
-    ui.paint();
+    UI::Setup();
 
-    renderer.endScene();
+    Renderer::EndScene();
 
 	return oPresentScene(pSwapChain, SyncInterval, Flags);
 }
 
 HRESULT __stdcall CreateSwapChain::hkCreateSwapChain(IDXGIFactory* pFactory, IUnknown* pDevice, DXGI_SWAP_CHAIN_DESC* pDesc, IDXGISwapChain** ppSwapChain)
 {
-	renderer.clearRenderTarget();
+	Renderer::ClearRenderTarget ();
 
 	return oCreateSwapChain(pFactory, pDevice, pDesc, ppSwapChain);
 }
@@ -27,9 +27,9 @@ HRESULT __stdcall ResizeBuffers::hkResizeBuffers(IDXGISwapChain* pSwapChain, UIN
 {
     HRESULT hr = oResizeBuffers(pSwapChain, BufferCount, Width, Height, NewFormat, SwapChainFlags);
 
-    if (SUCCEEDED(hr) && renderer.isRendererReady)
+    if (SUCCEEDED(hr) && Renderer::m_bInitialized)
     {
-        renderer.createRenderTarget(pSwapChain);
+        Renderer::CreateRenderTarget(pSwapChain);
     }
 
     return hr;

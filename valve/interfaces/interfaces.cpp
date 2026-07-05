@@ -1,15 +1,15 @@
 #include "interfaces.h"
 
-bool Interfaces::setup()
+bool Interfaces::Setup()
 {
-	schemaSystem = (ISchemaSystem*)getInterface("schemasystem.dll", "SchemaSystem_001");
-	engineClient = (CEngineClient*)getInterface("engine2.dll", "Source2EngineToClient001");
-	inputSystem = (CInputSystem*)getInterface("inputsystem.dll", "InputSystemVersion001");
+	pSchemaSystem = (ISchemaSystem*)GetInterface("schemasystem.dll", "SchemaSystem_001");
+	pEngineClient = (CEngineClient*)GetInterface("engine2.dll", "Source2EngineToClient001");
+	pInputSystem = (CInputSystem*)GetInterface("inputsystem.dll", "InputSystemVersion001");
 
 	return true;
 }
 
-void* Interfaces::getInterface(const char* moduleName, const char* interfaceName)
+void* Interfaces::GetInterface(const char* moduleName, const char* interfaceName)
 {
 	typedef void* (__fastcall* createInterfaceFn)(const char*, int*);
 

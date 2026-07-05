@@ -1,6 +1,6 @@
 #include "utils.h"
 
-void Utils::Console::attach()
+void Utils::Console::Attach()
 {
     AllocConsole();
     freopen_s(&file, "CONOUT$", "w", stdout);
@@ -8,7 +8,7 @@ void Utils::Console::attach()
 
 	MESSAGE_SUCCESS("console attached");
 }
-void Utils::Console::destroy()
+void Utils::Console::Destroy()
 {
     if (file)
     {
@@ -20,7 +20,7 @@ void Utils::Console::destroy()
 }
 
 
-void Utils::Console::logToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...)
+void Utils::Console::LogToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, (WORD)color);
@@ -49,13 +49,13 @@ void Utils::Console::logToConsole(ConsoleColor color, const char* prefix, const 
 	std::cout << std::endl;
 }
 
-void* Utils::Memory::getVMT(void* classBase, std::size_t index)
+void* Utils::Memory::GetVMT(void* classBase, std::size_t index)
 {
 	void** vtable = *reinterpret_cast<void***>(classBase);
 	return vtable[index];
 }
 
-uint8_t* Utils::Memory::signatureScan(const char* moduleName, const char* pattern)
+uint8_t* Utils::Memory::SignatureScan(const char* moduleName, const char* pattern)
 {
 	HMODULE module_handle = GetModuleHandle(moduleName);
 
@@ -68,7 +68,7 @@ uint8_t* Utils::Memory::signatureScan(const char* moduleName, const char* patter
 	PIMAGE_NT_HEADERS nt_headers = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(module_handle) + dos_header->e_lfanew);
 
 	std::size_t size_of_image = nt_headers->OptionalHeader.SizeOfImage;
-	std::vector<std::uint32_t> pattern_bytes = signatureToByte(pattern);
+	std::vector<std::uint32_t> pattern_bytes = Utils::Memory::SignatureToByte(pattern);
 	std::uint8_t* image_base = reinterpret_cast<std::uint8_t*>(module_handle);
 
 	std::size_t pattern_size = pattern_bytes.size();
@@ -96,7 +96,7 @@ uint8_t* Utils::Memory::signatureScan(const char* moduleName, const char* patter
 	return nullptr;
 }
 
-uint8_t* Utils::Memory::relativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize)
+uint8_t* Utils::Memory::RelativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize)
 {
 	if (!address)
 		return nullptr;
@@ -108,7 +108,7 @@ uint8_t* Utils::Memory::relativeAddress(uint8_t* address, std::ptrdiff_t offset,
 	return reinterpret_cast<uint8_t*>(rip + rel);
 }
 
-std::vector<std::uint32_t>  Utils::Memory::signatureToByte(const char* pattern)
+std::vector<std::uint32_t>  Utils::Memory::SignatureToByte(const char* pattern)
 {
 	std::vector<std::uint32_t> bytes;
 	char* start = const_cast<char*>(pattern);
@@ -136,7 +136,7 @@ std::vector<std::uint32_t>  Utils::Memory::signatureToByte(const char* pattern)
 	return bytes;
 }
 
-bool Utils::SDL3::setup()
+bool Utils::SDL3::Setup()
 {
 	auto hSDL3 = GetModuleHandleA(("SDL3.dll"));
 	if (!hSDL3) {

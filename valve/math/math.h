@@ -4,7 +4,5 @@
 
 class Math {
 public:
-	int calculateSegments(float radius);
+	static int CalculateSegments(float radius);
 };
-
-inline Math math;

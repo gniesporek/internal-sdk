@@ -14,10 +14,9 @@
 
 class HooksManager {
 public:
-	bool setup();
-	void destroy();
+	static bool Setup();
+	static void Destroy();
 private:
 	template<typename T>
-	void createHook(const std::string& name, const char* moduleName, const char* pattern, bool relative, T** original, void* detour);
+	static void CreateHook(const std::string& name, const char* moduleName, const char* pattern, bool relative, T** original, void* detour);
 };
-inline HooksManager hooksManager;

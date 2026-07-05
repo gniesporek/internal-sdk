@@ -2,9 +2,9 @@
 
 #include "../hooks/hooks.h"
 
-bool Renderer::setup(IDXGISwapChain* pSwapChain)
+bool Renderer::Setup(IDXGISwapChain* pSwapChain)
 {
-    if (isRendererReady)
+    if (m_bInitialized)
         return true;
 
     if (FAILED(pSwapChain->GetDevice(__uuidof(ID3D11Device), reinterpret_cast<void**>(&pDevice))))
@@ -21,7 +21,7 @@ bool Renderer::setup(IDXGISwapChain* pSwapChain)
 
     WindowProcedure::gWndProc = reinterpret_cast<WNDPROC>(SetWindowLongPtr(Renderer::hWnd, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(WindowProcedure::hWindowProcedure)));
 
-    Renderer::createRenderTarget(pSwapChain);
+    CreateRenderTarget(pSwapChain);
 
     IMGUI_CHECKVERSION();
 
@@ -31,16 +31,16 @@ bool Renderer::setup(IDXGISwapChain* pSwapChain)
     ImGui_ImplWin32_Init(Renderer::hWnd);
     ImGui_ImplDX11_Init(Renderer::pDevice, Renderer::pContext);
 
-	Renderer::setupFonts();
+    Renderer::SetupFonts();
 
-    Renderer::isRendererReady = true;
+    Renderer::m_bInitialized = true;
 
     MESSAGE_SUCCESS("successfully initialized renderer");
 
     return true;
 }
 
-void Renderer::destroy()
+void Renderer::Destroy()
 {
 
     if (WindowProcedure::gWndProc && Renderer::hWnd)
@@ -55,12 +55,12 @@ void Renderer::destroy()
     if (pContext) { pContext->Release(); pContext = nullptr; }
     if (pDevice) { pDevice->Release(); pDevice = nullptr; }
 
-    Renderer::isRendererReady = false; // @ force init
+    Renderer::m_bInitialized = false; // @ force init
 
 
 }
 
-void Renderer::clearRenderTarget()
+void Renderer::ClearRenderTarget()
 {
     if (Renderer::pRenderTargetView)
     {
@@ -69,7 +69,7 @@ void Renderer::clearRenderTarget()
     }
 }
 
-void Renderer::createRenderTarget(IDXGISwapChain* pSwapChain)
+void Renderer::CreateRenderTarget(IDXGISwapChain* pSwapChain)
 {
     if (Renderer::pRenderTargetView)
     {
@@ -102,7 +102,7 @@ void Renderer::createRenderTarget(IDXGISwapChain* pSwapChain)
     pBackBuffer->Release();
 }
 
-void Renderer::beginScene()
+void Renderer::BeginScene()
 {
     if (Renderer::pContext)
         Renderer::pContext->OMSetRenderTargets(1, &Renderer::pRenderTargetView, NULL);
@@ -112,14 +112,14 @@ void Renderer::beginScene()
     ImGui::NewFrame();
 }
 
-void Renderer::endScene()
+void Renderer::EndScene()
 {
     ImGui::Render();
     ImGui::EndFrame();
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 }
 
-bool Renderer::setupFonts()
+bool Renderer::SetupFonts()
 {
     ImFontConfig smallConfig;
 
@@ -127,8 +127,7 @@ bool Renderer::setupFonts()
 
     smallConfig.FontLoaderFlags = ImGuiFreeTypeLoaderFlags_::ImGuiFreeTypeBuilderFlags_MonoHinting | ImGuiFreeTypeLoaderFlags_::ImGuiFreeTypeBuilderFlags_Monochrome;
 
-
-    ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdana.ttf", 12.0f, &smallConfig, Fonts::fontRanges); // default font
+    ImGui::GetIO().Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\verdana.ttf", 12.0f, &smallConfig, Fonts::FontRanges); // default font
 
     ImGui::GetIO().Fonts->Build();
 
@@ -151,30 +150,30 @@ LRESULT WindowProcedure::hWindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, L
 
     if (uMsg == WM_KEYDOWN && (wParam == VK_INSERT || wParam == VK_HOME))
     {
-        ui.isToggled = !ui.isToggled;
+        UI::Toggled = !UI::Toggled;
 
-        if (interfaces.engineClient->isInGame())
+        if (Interfaces::pEngineClient->IsInGame())
         {
-            if (ui.isToggled)
+            if (UI::Toggled)
             {
                 if (RelativeMouseMode::oSetRelativeMouseMode)
                 {
-                    RelativeMouseMode::oSetRelativeMouseMode(interfaces.inputSystem, !ui.isToggled);
+                    RelativeMouseMode::oSetRelativeMouseMode(Interfaces::pInputSystem, !UI::Toggled);
                 }
 
-              utils.sdl3.warpMouseInWindow(nullptr, ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2);
+              Utils::SDL3::warpMouseInWindow(nullptr, ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2);
 
             }
             else
             {
                 if (RelativeMouseMode::oSetRelativeMouseMode)
-                    RelativeMouseMode::oSetRelativeMouseMode(interfaces.inputSystem, true);
+                    RelativeMouseMode::oSetRelativeMouseMode(Interfaces::pInputSystem, true);
             }
         }
 
     }
 
-    if (ui.isToggled)
+    if (UI::Toggled)
     {
         switch (uMsg)
         {

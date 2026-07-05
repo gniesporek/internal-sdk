@@ -24,7 +24,7 @@ public:
 
 class Fonts {
 public:
-	static inline const ImWchar fontRanges[] = {
+	static inline const ImWchar FontRanges[] = {
 		0x0020, 0x00FF, // Basic Latin + Latin Supplement
 		0x0100, 0x017F, // Latin Extended-A
 		0x0180, 0x024F, // Latin Extended-B
@@ -39,19 +39,20 @@ inline Fonts fonts;
 
 class Renderer {
 public:
-	bool setup(IDXGISwapChain* pSwapChain);
-	void destroy();
-	void clearRenderTarget();
-	void createRenderTarget(IDXGISwapChain* pSwapChain);
-	void beginScene();
-	void endScene();
-	bool setupFonts();
-	bool isRendererReady = false;
+	static bool Setup(IDXGISwapChain* pSwapChain);
+	static void Destroy();
+	static void ClearRenderTarget();
+	static void CreateRenderTarget(IDXGISwapChain* pSwapChain);
+	static void BeginScene();
+	static void EndScene();
+
+	static inline bool m_bInitialized = false;
+
 private:
+	static bool SetupFonts();
 	static inline IDXGISwapChain* pSwapChainGlobal;
 	static inline ID3D11Device* pDevice;
 	static inline ID3D11DeviceContext* pContext;
 	static inline HWND hWnd;
 	static inline ID3D11RenderTargetView* pRenderTargetView;
 };
-inline Renderer renderer;

@@ -4,11 +4,11 @@
 
 void __fastcall OnClientOutput::hkOnClientOutput(__int64 a1, __int64 a2)
 {
-	if (renderer.isRendererReady)
+	if (Renderer::m_bInitialized)
 	{
-		renderStackSystem.clearDrawData();
+		RenderStackSystem::ClearDrawData();
 
-		renderStackSystem.swapDrawData();
+		RenderStackSystem::SwapDrawData();
 	}
 
 	oOnClientOutput(a1, a2);

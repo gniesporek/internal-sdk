@@ -1,6 +1,6 @@
 #include "math.h"
 
-int Math::calculateSegments(float radius)
+int Math::CalculateSegments(float radius)
 {
     int segments = static_cast<int>(radius * 2); 
 

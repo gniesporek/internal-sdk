@@ -2,20 +2,15 @@
 
 #include "../renderer/renderer.h"
 
-class UI
-{
+class UI {
 public:
-	bool isToggled = false;
-	bool isDragged = false;
-	void paint();
-
+	static void Setup();
+	static inline bool Toggled = true, IsDragging = false;
 private:
-	void setup();
-	void end();
-	static inline ImGuiWindowFlags windowFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove;
-	static inline int width = 550, height = 500;
-	static inline Vector2D windowPosition, windowSize, dragDelta;
-	static inline bool initialize = false;
+	static void Start();
+	static void End();
+	static inline ImGuiWindowFlags WindowFlags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoMove;
+	static inline int Width = 500, Height = 500;
+	static inline Vector2D WindowPosition, WindowSize, DragDelta;
+	static inline bool Initialize = false;
 };
-
-inline UI ui;

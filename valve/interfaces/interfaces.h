@@ -7,13 +7,11 @@
 
 class Interfaces {
 public:
-	ISchemaSystem* schemaSystem = nullptr;
-	CInputSystem* inputSystem = nullptr;
-	CEngineClient* engineClient = nullptr;
+	static inline ISchemaSystem* pSchemaSystem = nullptr;
+	static inline CInputSystem* pInputSystem = nullptr;
+	static inline CEngineClient* pEngineClient = nullptr;
 
-	bool setup();
+	static bool Setup();
 private:
-	void* getInterface(const char* moduleName, const char* interfaceName);
+	static void* GetInterface(const char* moduleName, const char* interfaceName);
 };
-
-inline Interfaces interfaces;

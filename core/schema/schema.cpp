@@ -1,12 +1,12 @@
 #include "schema.h"
 
-bool SchemaManager::setup()
+bool SchemaManager::Setup()
 {
     std::vector<std::string> modules = { "client.dll", "engine2.dll" };
 
     for (auto& module : modules)
     {
-        CSchemaSystemTypeScope* pSchemaTypeScope = interfaces.schemaSystem->findTypeScopeForModule(module.c_str());
+        CSchemaSystemTypeScope* pSchemaTypeScope = Interfaces::pSchemaSystem->FindTypeScopeForModule(module.c_str());
         if (!pSchemaTypeScope)
         {
             MESSAGE_ERROR("failed to find schema type scope for module: %s", module);
@@ -59,7 +59,7 @@ bool SchemaManager::setup()
     return true;
 }
 
-uint32_t SchemaManager::getOffset(const std::string& className, const std::string& fieldName)
+uint32_t SchemaManager::GetOffset(const std::string& className, const std::string& fieldName)
 {
 	return schemaData[className][fieldName];
 }

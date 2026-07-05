@@ -35,127 +35,113 @@ struct RenderObject_t {
 };
 
 
-
 class RenderStackSystem {
 public:
-    class Rect {
-    public:
-         void draw(Vector2D pos, Vector2D size, Colors col);
-         void draw(int x, int y, int w, int h, Colors col);
-         void outline(Vector2D pos, Vector2D size, Colors col, Colors outline);
-         void outline(int x, int y, int w, int h, Colors col, Colors outline);
-         void fill(Vector2D pos, Vector2D size, Colors col);
-         void fill(int x, int y, int w, int h, Colors col);
-         void gradient(int x, int y, int w, int h, Colors c1, Colors c2, bool vertical = true);
+    struct Rect {
+        static void Draw(Vector2D pos, Vector2D size, Colors col);
+        static void Draw(int x, int y, int w, int h, Colors col);
+        static void Outline(Vector2D pos, Vector2D size, Colors col, Colors outline);
+        static void Outline(int x, int y, int w, int h, Colors col, Colors outline);
+        static void Fill(Vector2D pos, Vector2D size, Colors col);
+        static void Fill(int x, int y, int w, int h, Colors col);
+        static void Gradient(int x, int y, int w, int h, Colors c1, Colors c2, bool vertical = true);
     };
-	Rect rect;
-    class Line {
-    public:
-         void draw(Vector2D start, Vector2D end, Colors col, float thickness = 1.0f);
-         void draw(int x1, int y1, int x2, int y2, Colors col, float thickness = 1.0f);
-         void gradient(Vector2D start, Vector2D end, Colors colStart, Colors colEnd, float thickness = 1.0f);
-         void gradient(int x1, int y1, int x2, int y2, Colors colStart, Colors colEnd, float thickness = 1.0f);
-    };
-	Line line;
-    class Text {
-    public:
-         void draw(ImFont* font, Vector2D pos, const char* text, Colors col, bool centered = true);
-         void draw(ImFont* font, int x, int y, const char* text, Colors col, bool centered = true);
-         void outline(ImFont* font, Vector2D pos, const char* text, Colors colText, Colors colOutline, bool centered = true);
-         void outline(ImFont* font, int x, int y, const char* text, Colors colText, Colors colOutline, bool centered = true);
-         void shadow(ImFont* font, Vector2D pos, const char* text, Colors txt, Colors shadow, float offset = 1.f, bool centered = true);
-         void shadow(ImFont* font, int x, int y, const char* text, Colors txt, Colors shadow, float offset = 1.f, bool centered = true);
-         int getTextWidth(ImFont* font, const char* text);
-         int getTextHeight(ImFont* font, const char* text);
-         int getTextDimensions(ImFont* font, const char* text, bool width);
-    };
-	Text text;
-    class Triangle {
-	public:
-         void draw(Vector2D a, Vector2D b, Vector2D c, Colors col);
-         void draw(int x1, int y1, int x2, int y2, int x3, int y3, Colors col);
-         void fill(Vector2D a, Vector2D b, Vector2D c, Colors col);
-         void fill(int x1, int y1, int x2, int y2, int x3, int y3, Colors col);
-         void outline(Vector2D a, Vector2D b, Vector2D c, Colors col, Colors outline);
-    };
-	Triangle triangle;
-    class Circle {
-    public:
-         void draw(Vector2D pos, float radius, Colors col);
-         void draw(int x, int y, float radius, Colors col);
-         void fill(Vector2D pos, float radius, Colors col);
-         void fill(int x, int y, float radius, Colors col);
-         void outline(Vector2D pos, float radius, Colors col, Colors outline);
-    };
-	Circle circle;
 
-    class Image {
-    public:
-         void draw(ImTextureID texture, Vector2D pos, Vector2D size, Colors tint = { 255,255,255,255 });
-         void draw(ImTextureID texture, int x, int y, int w, int h, Colors tint = { 255,255,255,255 });
-         void outline(ImTextureID texture, Vector2D pos, Vector2D size, Colors tint, Colors outline);
-         void outline(ImTextureID texture, int x, int y, int w, int h, Colors tint, Colors outline);
+    struct Line {
+        static void Draw(Vector2D start, Vector2D end, Colors col, float thickness = 1.0f);
+        static void Draw(int x1, int y1, int x2, int y2, Colors col, float thickness = 1.0f);
+        static void Gradient(Vector2D start, Vector2D end, Colors colStart, Colors colEnd, float thickness = 1.0f);
+        static void Gradient(int x1, int y1, int x2, int y2, Colors colStart, Colors colEnd, float thickness = 1.0f);
     };
-	Image image;
 
-    void clear();
-    void clearDrawData();
-    void swapDrawData();
-    void renderDrawData(ImDrawList* pDrawList);
+    struct Text {
+        static void Draw(ImFont* font, Vector2D pos, const char* text, Colors col, bool centered = true);
+        static void Draw(ImFont* font, int x, int y, const char* text, Colors col, bool centered = true);
+        static void Outline(ImFont* font, Vector2D pos, const char* text, Colors colText, Colors colOutline, bool centered = true);
+        static void Outline(ImFont* font, int x, int y, const char* text, Colors colText, Colors colOutline, bool centered = true);
+        static void Shadow(ImFont* font, Vector2D pos, const char* text, Colors txt, Colors shadow, float offset = 1.f, bool centered = true);
+        static void Shadow(ImFont* font, int x, int y, const char* text, Colors txt, Colors shadow, float offset = 1.f, bool centered = true);
+        static int GetTextWidth(ImFont* font, const char* text);
+        static int GetTextHeight(ImFont* font, const char* text);
+        static int GetTextDimensions(ImFont* font, const char* text, bool width);
+    };
+
+    struct Triangle {
+        static void Draw(Vector2D a, Vector2D b, Vector2D c, Colors col);
+        static void Draw(int x1, int y1, int x2, int y2, int x3, int y3, Colors col);
+        static void Fill(Vector2D a, Vector2D b, Vector2D c, Colors col);
+        static void Fill(int x1, int y1, int x2, int y2, int x3, int y3, Colors col);
+        static void Outline(Vector2D a, Vector2D b, Vector2D c, Colors col, Colors outline);
+    };
+
+    struct Circle {
+        static void Draw(Vector2D pos, float radius, Colors col);
+        static void Draw(int x, int y, float radius, Colors col);
+        static void Fill(Vector2D pos, float radius, Colors col);
+        static void Fill(int x, int y, float radius, Colors col);
+        static void Outline(Vector2D pos, float radius, Colors col, Colors outline);
+    };
+
+    struct Image {
+        static void Draw(ImTextureID texture, Vector2D pos, Vector2D size, Colors tint = { 255,255,255,255 });
+        static void Draw(ImTextureID texture, int x, int y, int w, int h, Colors tint = { 255,255,255,255 });
+        static void Outline(ImTextureID texture, Vector2D pos, Vector2D size, Colors tint, Colors outline);
+        static void Outline(ImTextureID texture, int x, int y, int w, int h, Colors tint, Colors outline);
+    };
+
+    static void Clear();
+    static void ClearDrawData();
+    static void SwapDrawData();
+    static void RenderDrawData(ImDrawList* pDrawList);
 
 private:
-    std::deque<RenderObject_t> vecDrawData;
-    std::deque<RenderObject_t> vecSafeDrawData;
-    std::shared_mutex drawMutex;
+    static inline std::deque<RenderObject_t> vecDrawData;
+    static inline std::deque<RenderObject_t> vecSafeDrawData;
+    static inline std::shared_mutex drawMutex;
 };
-inline RenderStackSystem renderStackSystem;
 
 
-class DrawingSystem // old system used for non thread safe drawing
-{
+class Draw {
 public:
     class Rect {
     public:
-        void outline(int x, int y, int width, int height, Colors color, Colors outlineColor);
-        void fill(int x, int y, int width, int height, Colors color);
-        void draw(int x, int y, int width, int height, Colors color);
-        void outline(Vector2D position, Vector2D size, Colors color, Colors outlineColor);
-        void fill(Vector2D position, Vector2D size, Colors color);
-        void draw(Vector2D position, Vector2D size, Colors color);
+        static void Outline(int x, int y, int width, int height, Colors color, Colors outlineColor);
+        static void Fill(int x, int y, int width, int height, Colors color);
+        static void Draw(int x, int y, int width, int height, Colors color);
+        static void Outline(Vector2D position, Vector2D size, Colors color, Colors outlineColor);
+        static void Fill(Vector2D position, Vector2D size, Colors color);
+        static void Draw(Vector2D position, Vector2D size, Colors color);
     };
-    Rect rect;
 
     class Line {
     public:
-        void draw(Vector2D start, Vector2D end, Colors color, float thickness = 1.0f);
-        void draw(int x1, int y1, int x2, int y2, Colors color, float thickness = 1.0f);
-        void gradient(Vector2D start, Vector2D end, Colors startColor, Colors endColor, float thickness = 1.0f);
-        void gradient(int x1, int y1, int x2, int y2, Colors startColor, Colors endColor, float thickness = 1.0f);
+        static void Draw(Vector2D start, Vector2D end, Colors color, float thickness = 1.0f);
+        static void Draw(int x1, int y1, int x2, int y2, Colors color, float thickness = 1.0f);
+        static void Gradient(Vector2D start, Vector2D end, Colors startColor, Colors endColor, float thickness = 1.0f);
+        static void Gradient(int x1, int y1, int x2, int y2, Colors startColor, Colors endColor, float thickness = 1.0f);
     };
-	Line line;
 
     class Text {
     public:
-        void draw(ImFont* font, Vector2D position, const char* text, Colors color, bool centered = false);
-        void draw(ImFont* font, int x, int y, const char* text, Colors color, bool centered = false);
-        void outline(ImFont* font, Vector2D position, const char* text, Colors colText, Colors colOutline, bool centered);
-        void outline(ImFont* font, int x, int y, const char* text, Colors colText, Colors colOutline, bool centered);
-        int getTextWidth(ImFont* font, const char* text);
-        int getTextHeight(ImFont* font, const char* text);
-        void shadow(ImFont* font, Vector2D position, const char* text, Colors textColor, Colors shadowColor, float offset = 1.0f, bool centered = false);
-        void shadow(ImFont* font, int x, int y, const char* text, Colors textColor, Colors shadowColor, float offset = 1.0f, bool centered = false);
+        static void Draw(ImFont* font, Vector2D position, const char* text, Colors color, bool centered = false);
+        static void Draw(ImFont* font, int x, int y, const char* text, Colors color, bool centered = false);
+        static void Outline(ImFont* font, Vector2D position, const char* text, Colors colText, Colors colOutline, bool centered);
+        static void Outline(ImFont* font, int x, int y, const char* text, Colors colText, Colors colOutline, bool centered);
+        static int GetTextWidth(ImFont* font, const char* text);
+        static int GetTextHeight(ImFont* font, const char* text);
+        static void Shadow(ImFont* font, Vector2D position, const char* text, Colors textColor, Colors shadowColor, float offset = 1.0f, bool centered = false);
+        static void Shadow(ImFont* font, int x, int y, const char* text, Colors textColor, Colors shadowColor, float offset = 1.0f, bool centered = false);
     private:
-        int getTextDimensions(ImFont* font, const char* text, bool width);
+        static int GetTextDimensions(ImFont* font, const char* text, bool width);
     };
-    Text text;
 
     class Image {
     public:
-        void draw(ID3D11ShaderResourceView* texture, Vector2D position, Vector2D size, Colors tint = { 255,255,255,255 });
-        void draw(ID3D11ShaderResourceView* texture, int x, int y, int width, int height, Colors tint = { 255,255,255,255 });
+        static void Draw(ID3D11ShaderResourceView* texture, Vector2D position, Vector2D size, Colors tint = { 255,255,255,255 });
+        static void Draw(ID3D11ShaderResourceView* texture, int x, int y, int width, int height, Colors tint = { 255,255,255,255 });
     };
-	Image image;
 
-    Vector2D getTextureSize(ID3D11ShaderResourceView* texture);
+
+    static Vector2D GetTextureSize(ID3D11ShaderResourceView* texture);
+
 };
-inline DrawingSystem drawingSystem;
