@@ -1,0 +1,8 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="admin" />
+    <BuildType Name="live" />
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="internal-sdk.vcxproj" />
+</Solution>
