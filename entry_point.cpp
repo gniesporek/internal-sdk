@@ -6,6 +6,7 @@
 unsigned long EntryPoint(HMODULE hModule)
 {
     utils.console.attach();
+    utils.sdl3.setup();
     interfaces.setup();
     schemaManager.setup();
     hooksManager.setup();

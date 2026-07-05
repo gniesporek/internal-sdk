@@ -33,7 +33,14 @@ public:
     private:
         FILE* file = nullptr;
     };
-
+    
+    class SDL3 {
+    public:
+        bool setup();
+        typedef int(__stdcall* fnWarpMouseInWindow)(void*, float, float y);
+		fnWarpMouseInWindow warpMouseInWindow = nullptr;
+    };
+	SDL3 sdl3;
 
     class Memory {
     public:

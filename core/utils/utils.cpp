@@ -135,3 +135,25 @@ std::vector<std::uint32_t>  Utils::Memory::signatureToByte(const char* pattern)
 
 	return bytes;
 }
+
+bool Utils::SDL3::setup()
+{
+	auto hSDL3 = GetModuleHandleA(("SDL3.dll"));
+	if (!hSDL3) {
+		MESSAGE_ERROR("failed to find sdl3.dll");
+		return false;
+	}
+
+	warpMouseInWindow = (fnWarpMouseInWindow)GetProcAddress(hSDL3, ("SDL_WarpMouseInWindow"));
+
+	if (!warpMouseInWindow)
+	{
+		MESSAGE_ERROR("failed to find SDL_WarpMouseInWindow");
+		return false;
+	}
+
+
+	MESSAGE_SUCCESS("successfully setup sdl3");
+
+	return true;
+}
