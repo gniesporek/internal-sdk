@@ -104,7 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\hooks\directx11\directx11.cpp" />
+    <ClCompile Include="core\hooks\engine2\engine2.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
+    <ClCompile Include="core\renderer\drawing.cpp" />
     <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="core\schema\schema.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
@@ -122,10 +124,13 @@
     <ClCompile Include="ext\minhook\hook.cpp" />
     <ClCompile Include="ext\minhook\trampoline.cpp" />
     <ClCompile Include="valve\interfaces\interfaces.cpp" />
+    <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\hooks\directx11\directx11.h" />
+    <ClInclude Include="core\hooks\engine2\engine2.h" />
     <ClInclude Include="core\hooks\hooks.h" />
+    <ClInclude Include="core\renderer\drawing.h" />
     <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="core\schema\schema.h" />
     <ClInclude Include="core\utils\utils.h" />
@@ -250,6 +255,9 @@
     <ClInclude Include="ext\minhook\trampoline.h" />
     <ClInclude Include="valve\interfaces\interfaces.h" />
     <ClInclude Include="valve\interfaces\schema_system.h" />
+    <ClInclude Include="valve\math\math.h" />
+    <ClInclude Include="valve\structs\colors.h" />
+    <ClInclude Include="valve\vectors\vectors.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="ext\freetype\freetype.lib" />

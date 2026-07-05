@@ -12,6 +12,8 @@
 #pragma comment(lib, "d3d11.lib")
 #pragma comment(lib,"D3DX11.lib")
 
+#include "drawing.h"
+
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 class WindowProcedure {

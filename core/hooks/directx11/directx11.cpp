@@ -7,11 +7,7 @@ HRESULT __stdcall PresentScene::hkPresentScene(IDXGISwapChain* pSwapChain, UINT 
 
     renderer.beginScene();
 
-	ImGui::GetBackgroundDrawList()->AddText(ImGui::GetFont(), 12.0f, ImVec2(10, 10), IM_COL32(255, 255, 255, 255), "welcome");
-
-
-	ImGui::Begin("internal");
-    ImGui::End();
+    renderStackSystem.renderDrawData(ImGui::GetBackgroundDrawList());
 
     renderer.endScene();
 

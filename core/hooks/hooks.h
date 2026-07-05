@@ -6,6 +6,7 @@
 #include "../../ext/minhook/minhook.h"
 
 #include "directx11/directx11.h"
+#include "engine2/engine2.h"
 
 class HooksManager {
 public:
