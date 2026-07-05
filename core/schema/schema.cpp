@@ -9,14 +9,14 @@ bool SchemaManager::setup()
         CSchemaSystemTypeScope* pSchemaTypeScope = interfaces.schemaSystem->findTypeScopeForModule(module.c_str());
         if (!pSchemaTypeScope)
         {
-            MESSAGE_ERROR("failed to find schema type scope for module: ", module);
+            MESSAGE_ERROR("failed to find schema type scope for module: %s", module);
             continue;
         }
 
         auto pEntries = pSchemaTypeScope->pDeclaredClasses;
         if (!pEntries)
         {
-            MESSAGE_ERROR("failed to get class container for module: ", module);
+            MESSAGE_ERROR("failed to get class container for module: %s", module);
             continue;
         }
 
