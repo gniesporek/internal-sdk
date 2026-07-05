@@ -5,8 +5,12 @@
 
 #include "../../ext/minhook/minhook.h"
 
+#include "../ui/ui.h"
+
 #include "directx11/directx11.h"
 #include "engine2/engine2.h"
+#include "client/mouse_input.h"
+#include "input_system/input_system.h"
 
 class HooksManager {
 public:

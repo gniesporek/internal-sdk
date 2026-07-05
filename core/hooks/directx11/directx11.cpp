@@ -1,4 +1,4 @@
-#include "directx11.h"
+#include "../hooks.h"
 
 HRESULT __stdcall PresentScene::hkPresentScene(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -8,6 +8,8 @@ HRESULT __stdcall PresentScene::hkPresentScene(IDXGISwapChain* pSwapChain, UINT 
     renderer.beginScene();
 
     renderStackSystem.renderDrawData(ImGui::GetBackgroundDrawList());
+
+    ui.paint();
 
     renderer.endScene();
 

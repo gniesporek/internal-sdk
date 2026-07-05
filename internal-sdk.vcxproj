@@ -103,12 +103,15 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\hooks\client\mouse_input.cpp" />
     <ClCompile Include="core\hooks\directx11\directx11.cpp" />
     <ClCompile Include="core\hooks\engine2\engine2.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
+    <ClCompile Include="core\hooks\input_system\input_system.cpp" />
     <ClCompile Include="core\renderer\drawing.cpp" />
     <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="core\schema\schema.cpp" />
+    <ClCompile Include="core\ui\ui.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="ext\imgui\imgui.cpp" />
@@ -127,12 +130,15 @@
     <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\hooks\client\mouse_input.h" />
     <ClInclude Include="core\hooks\directx11\directx11.h" />
     <ClInclude Include="core\hooks\engine2\engine2.h" />
     <ClInclude Include="core\hooks\hooks.h" />
+    <ClInclude Include="core\hooks\input_system\input_system.h" />
     <ClInclude Include="core\renderer\drawing.h" />
     <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="core\schema\schema.h" />
+    <ClInclude Include="core\ui\ui.h" />
     <ClInclude Include="core\utils\utils.h" />
     <ClInclude Include="ext\freetype\include\dlg\dlg.h" />
     <ClInclude Include="ext\freetype\include\dlg\output.h" />
@@ -253,6 +259,8 @@
     <ClInclude Include="ext\minhook\hde\table64.h" />
     <ClInclude Include="ext\minhook\minhook.h" />
     <ClInclude Include="ext\minhook\trampoline.h" />
+    <ClInclude Include="valve\interfaces\engine_client.h" />
+    <ClInclude Include="valve\interfaces\input_system.h" />
     <ClInclude Include="valve\interfaces\interfaces.h" />
     <ClInclude Include="valve\interfaces\schema_system.h" />
     <ClInclude Include="valve\math\math.h" />

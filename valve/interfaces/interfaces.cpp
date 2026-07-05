@@ -3,6 +3,8 @@
 bool Interfaces::setup()
 {
 	schemaSystem = (ISchemaSystem*)getInterface("schemasystem.dll", "SchemaSystem_001");
+	engineClient = (CEngineClient*)getInterface("engine2.dll", "Source2EngineToClient001");
+	inputSystem = (CInputSystem*)getInterface("inputsystem.dll", "InputSystemVersion001");
 
 	return true;
 }

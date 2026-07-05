@@ -1,5 +1,7 @@
 #include "renderer.h"
 
+#include "../hooks/hooks.h"
+
 bool Renderer::setup(IDXGISwapChain* pSwapChain)
 {
     if (isRendererReady)
@@ -147,7 +149,50 @@ LRESULT WindowProcedure::hWindowProcedure(HWND hWnd, UINT uMsg, WPARAM wParam, L
             return TRUE;
     }
 
+    if (uMsg == WM_KEYDOWN && (wParam == VK_INSERT || wParam == VK_HOME))
+    {
+        ui.isToggled = !ui.isToggled;
+
+        if (interfaces.engineClient->isInGame())
+        {
+            if (ui.isToggled)
+            {
+                if (RelativeMouseMode::oSetRelativeMouseMode)
+                {
+                    RelativeMouseMode::oSetRelativeMouseMode(interfaces.inputSystem, !ui.isToggled);
+                }
+
+              utils.sdl3.warpMouseInWindow(nullptr, ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2);
+
+            }
+            else
+            {
+                if (RelativeMouseMode::oSetRelativeMouseMode)
+                    RelativeMouseMode::oSetRelativeMouseMode(interfaces.inputSystem, true);
+            }
+        }
+
+    }
+
+    if (ui.isToggled)
+    {
+        switch (uMsg)
+        {
+        case WM_MOUSEMOVE:
+        case WM_LBUTTONDOWN:
+        case WM_LBUTTONUP:
+        case WM_RBUTTONDOWN:
+        case WM_RBUTTONUP:
+        case WM_MBUTTONDOWN:
+        case WM_MBUTTONUP:
+        case WM_MOUSEWHEEL:
+        case WM_XBUTTONDOWN:
+        case WM_XBUTTONUP:
+            return 0;
+        }
+    }
 
     return CallWindowProc(gWndProc, hWnd, uMsg, wParam, lParam);
 
 }
+
