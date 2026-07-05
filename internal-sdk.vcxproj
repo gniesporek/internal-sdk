@@ -48,7 +48,7 @@
     <IntDir>..\..\output\admin\obj</IntDir>
     <OutDir>..\..\output\admin</OutDir>
     <IncludePath>..\internal-sdk\ext\freetype\include;M:\DirectX SDK\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\internal-sdk\ext\freetype\objs;M:\DirectX SDK\Lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>..\internal-sdk\ext\freetype\;M:\DirectX SDK\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='admin|x64'">
     <ClCompile>
@@ -232,7 +232,7 @@
     <ClInclude Include="ext\minhook\trampoline.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ext\freetype\objs\freetype.lib" />
+    <Library Include="ext\freetype\freetype.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

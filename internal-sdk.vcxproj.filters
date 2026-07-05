@@ -427,6 +427,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="ext\freetype\objs\freetype.lib" />
+    <Library Include="ext\freetype\freetype.lib" />
   </ItemGroup>
 </Project>
