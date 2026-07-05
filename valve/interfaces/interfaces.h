@@ -5,11 +5,11 @@
 
 class Interfaces {
 public:
-	ISchemaSystem* pSchemaSystem = nullptr;
+	ISchemaSystem* schemaSystem = nullptr;
 
 	bool setup();
 private:
-	void* get_interface(const char* module_name, const char* interface_name);
+	void* getInterface(const char* moduleName, const char* interfaceName);
 };
 
 inline Interfaces interfaces;

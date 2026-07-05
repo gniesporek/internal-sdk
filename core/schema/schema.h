@@ -13,8 +13,8 @@ class SchemaManager
 {
 public:
     bool setup();
-    uint32_t get_offset(const std::string& class_name, const std::string& field_name);
+    uint32_t getOffset(const std::string& className, const std::string& fieldName);
 private:
-    static inline std::unordered_map<std::string, std::unordered_map<std::string, uint32_t>> schema_data;
+    static inline std::unordered_map<std::string, std::unordered_map<std::string, uint32_t>> schemaData;
 };
-inline SchemaManager schema_manager;
+inline SchemaManager schemaManager;

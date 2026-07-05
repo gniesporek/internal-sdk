@@ -20,7 +20,7 @@ void Utils::Console::destroy()
 }
 
 
-void Utils::Console::log_to_console(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...)
+void Utils::Console::logToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...)
 {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hConsole, (WORD)color);
@@ -49,13 +49,13 @@ void Utils::Console::log_to_console(ConsoleColor color, const char* prefix, cons
 	std::cout << std::endl;
 }
 
-void* Utils::Memory::get_virtual_function(void* class_base, std::size_t index)
+void* Utils::Memory::getVMT(void* classBase, std::size_t index)
 {
-	void** vtable = *reinterpret_cast<void***>(class_base);
+	void** vtable = *reinterpret_cast<void***>(classBase);
 	return vtable[index];
 }
 
-uint8_t* Utils::Memory::signature_scan(const char* moduleName, const char* pattern)
+uint8_t* Utils::Memory::signatureScan(const char* moduleName, const char* pattern)
 {
 	HMODULE module_handle = GetModuleHandle(moduleName);
 
@@ -68,7 +68,7 @@ uint8_t* Utils::Memory::signature_scan(const char* moduleName, const char* patte
 	PIMAGE_NT_HEADERS nt_headers = reinterpret_cast<PIMAGE_NT_HEADERS>(reinterpret_cast<std::uint8_t*>(module_handle) + dos_header->e_lfanew);
 
 	std::size_t size_of_image = nt_headers->OptionalHeader.SizeOfImage;
-	std::vector<std::uint32_t> pattern_bytes = signature_to_byte(pattern);
+	std::vector<std::uint32_t> pattern_bytes = signatureToByte(pattern);
 	std::uint8_t* image_base = reinterpret_cast<std::uint8_t*>(module_handle);
 
 	std::size_t pattern_size = pattern_bytes.size();
@@ -96,19 +96,19 @@ uint8_t* Utils::Memory::signature_scan(const char* moduleName, const char* patte
 	return nullptr;
 }
 
-uint8_t* Utils::Memory::relative_address(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instruction_size)
+uint8_t* Utils::Memory::relativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize)
 {
 	if (!address)
 		return nullptr;
 
 	int32_t rel = *reinterpret_cast<int32_t*>(address + offset);
 
-	uintptr_t rip = reinterpret_cast<uintptr_t>(address) + instruction_size;
+	uintptr_t rip = reinterpret_cast<uintptr_t>(address) + instructionSize;
 
 	return reinterpret_cast<uint8_t*>(rip + rel);
 }
 
-std::vector<std::uint32_t>  Utils::Memory::signature_to_byte(const char* pattern)
+std::vector<std::uint32_t>  Utils::Memory::signatureToByte(const char* pattern)
 {
 	std::vector<std::uint32_t> bytes;
 	char* start = const_cast<char*>(pattern);

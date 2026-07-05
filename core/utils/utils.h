@@ -14,10 +14,10 @@ enum class ConsoleColor : WORD {
     FileLine = FOREGROUND_RED | FOREGROUND_GREEN
 };
 
-#define MESSAGE(...) utils.console.log_to_console(ConsoleColor::Default,"[LOG] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_INFO(...) utils.console.log_to_console(ConsoleColor::Info,"[INFO] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_SUCCESS(...) utils.console.log_to_console(ConsoleColor::Success,"[SUCCESS] ",__FILE__,__LINE__,__VA_ARGS__);
-#define MESSAGE_ERROR(...) utils.console.log_to_console(ConsoleColor::Error,"[ERROR] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE(...) utils.console.logToConsole(ConsoleColor::Default,"[LOG] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_INFO(...) utils.console.logToConsole(ConsoleColor::Info,"[INFO] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_SUCCESS(...) utils.console.logToConsole(ConsoleColor::Success,"[SUCCESS] ",__FILE__,__LINE__,__VA_ARGS__);
+#define MESSAGE_ERROR(...) utils.console.logToConsole(ConsoleColor::Error,"[ERROR] ",__FILE__,__LINE__,__VA_ARGS__);
 
 #define PAD_CONCAT(a, b) a##b
 #define PAD_MAKE(a, b) PAD_CONCAT(a, b)
@@ -29,7 +29,7 @@ public:
     public:
         void attach();
         void destroy();
-		void log_to_console(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...);
+		void logToConsole(ConsoleColor color, const char* prefix, const char* file, int line, const char* format, ...);
     private:
         FILE* file = nullptr;
     };
@@ -38,16 +38,16 @@ public:
     class Memory {
     public:
         template <typename T, typename ... U>
-        T call_virtual_function(void* thisptr, const size_t index, U ... params)
+        T callVMT(void* thisptr, const size_t index, U ... params)
         {
             typedef T(__thiscall* Fn)(void*, decltype(params)...);
             return (*static_cast<Fn**>(thisptr))[index](thisptr, params...);
         }
-        void* get_virtual_function(void* class_base, std::size_t index);
-        uint8_t* signature_scan(const char* moduleName, const char* pattern);
-        uint8_t* relative_address(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instruction_size);
+        void* getVMT(void* classBase, std::size_t index);
+        uint8_t* signatureScan(const char* moduleName, const char* pattern);
+        uint8_t* relativeAddress(uint8_t* address, std::ptrdiff_t offset, std::ptrdiff_t instructionSize);
     private:
-        std::vector<std::uint32_t> signature_to_byte(const char* pattern);
+        std::vector<std::uint32_t> signatureToByte(const char* pattern);
     };
 
     Console console;

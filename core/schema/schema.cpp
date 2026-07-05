@@ -6,7 +6,7 @@ bool SchemaManager::setup()
 
     for (auto& module : modules)
     {
-        CSchemaSystemTypeScope* pSchemaTypeScope = interfaces.pSchemaSystem->find_type_scope_for_module(module.c_str());
+        CSchemaSystemTypeScope* pSchemaTypeScope = interfaces.schemaSystem->findTypeScopeForModule(module.c_str());
         if (!pSchemaTypeScope)
         {
             MESSAGE_ERROR("failed to find schema type scope for module: ", module);
@@ -41,13 +41,13 @@ bool SchemaManager::setup()
                 if (!field.szName)
                     continue;
 
-                schema_data[pClass->szName][field.szName] = field.uOffset;
+                schemaData[pClass->szName][field.szName] = field.uOffset;
                 fieldsFound++;
             }
         }
     }
 
-    if (schema_data.empty())
+    if (schemaData.empty())
     {
 
         MESSAGE_ERROR("schema system setup failed: no schema data found.");
@@ -59,7 +59,7 @@ bool SchemaManager::setup()
     return true;
 }
 
-uint32_t SchemaManager::get_offset(const std::string& class_name, const std::string& field_name)
+uint32_t SchemaManager::getOffset(const std::string& className, const std::string& fieldName)
 {
-	return schema_data[class_name][field_name];
+	return schemaData[className][fieldName];
 }

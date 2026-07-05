@@ -2,28 +2,28 @@
 
 bool Interfaces::setup()
 {
-	pSchemaSystem = (ISchemaSystem*)get_interface("schemasystem.dll", "SchemaSystem_001");
+	schemaSystem = (ISchemaSystem*)getInterface("schemasystem.dll", "SchemaSystem_001");
 
 	return true;
 }
 
-void* Interfaces::get_interface(const char* module_name, const char* interface_name)
+void* Interfaces::getInterface(const char* moduleName, const char* interfaceName)
 {
-	typedef void* (__fastcall* CreateInterfaceFn)(const char*, int*);
+	typedef void* (__fastcall* createInterfaceFn)(const char*, int*);
 
-	auto pHandle = GetModuleHandleA(module_name);
+	auto pHandle = GetModuleHandleA(moduleName);
 	if (!pHandle)
 		return NULL;
 
-	auto CreateInterface = (CreateInterfaceFn)GetProcAddress(pHandle, "CreateInterface");
-	if (!CreateInterface)
+	auto createInterface = (createInterfaceFn)GetProcAddress(pHandle, "CreateInterface");
+	if (!createInterface)
 		return NULL;
 
-	void* Interface = CreateInterface(interface_name, 0);
-	if (!Interface)
+	void* pInterface = createInterface(interfaceName, 0);
+	if (!pInterface)
 		return NULL;
 
-	MESSAGE_INFO("found interface %s" , interface_name);
+	MESSAGE_INFO("found interface %s" , interfaceName);
 
-	return Interface;
+	return pInterface;
 }

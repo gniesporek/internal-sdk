@@ -1,17 +1,20 @@
 #include "core/utils/utils.h"
 #include "core/schema/schema.h"
+#include "core/hooks/hooks.h"
 #include "valve/interfaces/interfaces.h"
 
 unsigned long EntryPoint(HMODULE hModule)
 {
     utils.console.attach();
     interfaces.setup();
-    schema_manager.setup();
+    schemaManager.setup();
+    hooksManager.setup();
 
     while(!GetAsyncKeyState(VK_END))
 		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
 	utils.console.destroy();
+    hooksManager.destroy();
 
     FreeLibraryAndExitThread(hModule, 0);
 }

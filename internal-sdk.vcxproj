@@ -103,6 +103,9 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\hooks\directx11\directx11.cpp" />
+    <ClCompile Include="core\hooks\hooks.cpp" />
+    <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="core\schema\schema.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
     <ClCompile Include="entry_point.cpp" />
@@ -121,6 +124,9 @@
     <ClCompile Include="valve\interfaces\interfaces.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\hooks\directx11\directx11.h" />
+    <ClInclude Include="core\hooks\hooks.h" />
+    <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="core\schema\schema.h" />
     <ClInclude Include="core\utils\utils.h" />
     <ClInclude Include="ext\freetype\include\dlg\dlg.h" />

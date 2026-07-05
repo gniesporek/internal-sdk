@@ -54,16 +54,16 @@ public:
 class ISchemaSystem
 {
 public:
-    CSchemaSystemTypeScope* find_type_scope_for_module(const char* module)
+    CSchemaSystemTypeScope* findTypeScopeForModule(const char* module)
     {
-        typedef CSchemaSystemTypeScope* (__thiscall* FnFindTypeScopeForModule)(void*, const char*, void*);
-        static auto FindTypeScopeForModule = (FnFindTypeScopeForModule)(utils.memory.signature_scan("schemasystem.dll", "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 48 8B DA"));
-        return FindTypeScopeForModule(this, module, nullptr);
+        typedef CSchemaSystemTypeScope* (__thiscall* fnFindTypeScopeForModule)(void*, const char*, void*);
+        static auto findTypeScopeForModuleFn = (fnFindTypeScopeForModule)(utils.memory.signatureScan("schemasystem.dll", "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 48 8B DA"));
+        return findTypeScopeForModuleFn(this, module, nullptr);
     }
-    CSchemaSystemTypeScope* global_type_scope()
+    CSchemaSystemTypeScope* globalTypeScope()
     {
-        typedef CSchemaSystemTypeScope* (__thiscall* FnGlobalTypeScope)(void*);
-        static auto GlobalTypeScope = (FnGlobalTypeScope)(utils.memory.signature_scan("schemasystem.dll", "48 8D 05 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56"));
-        return GlobalTypeScope(this);
+        typedef CSchemaSystemTypeScope* (__thiscall* fnGlobalTypeScope)(void*);
+        static auto globalTypeScopeFn = (fnGlobalTypeScope)(utils.memory.signatureScan("schemasystem.dll", "48 8D 05 ? ? ? ? C3 CC CC CC CC CC CC CC CC 48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56"));
+        return globalTypeScopeFn(this);
     }
 };
