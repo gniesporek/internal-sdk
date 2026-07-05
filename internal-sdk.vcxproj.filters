@@ -16,6 +16,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="internal-sdk.slnx" />
+    <None Include="README.md" />
+    <None Include=".gitignore" />
+    <None Include=".gitattributes" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry_point.cpp">

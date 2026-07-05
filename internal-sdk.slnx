@@ -4,5 +4,5 @@
     <BuildType Name="live" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="internal-sdk.vcxproj" />
+  <Project Path="internal-sdk.vcxproj" Id="77bffd37-2344-48cc-9c8a-fd6a73e59e82" />
 </Solution>
