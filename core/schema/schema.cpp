@@ -45,6 +45,8 @@ bool SchemaManager::Setup()
                 fieldsFound++;
             }
         }
+
+		MESSAGE_INFO("found %d classes and %d fields in module: %s", classesFound, fieldsFound, module.c_str());
     }
 
     if (schemaData.empty())

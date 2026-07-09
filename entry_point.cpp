@@ -9,7 +9,6 @@ unsigned long EntryPoint(HMODULE hModule)
     Utils::SDL3::Setup();
     Interfaces::Setup();
 
-
     SchemaManager::Setup();
     HooksManager::Setup();
 

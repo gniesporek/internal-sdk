@@ -19,6 +19,7 @@
     <None Include="README.md" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
+    <None Include="LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="entry_point.cpp">
@@ -94,6 +95,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\hooks\input_system\input_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\features\features.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\features\visuals\players.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -504,6 +511,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="valve\interfaces\input_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\features.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\visuals\players.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

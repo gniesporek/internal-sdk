@@ -100,9 +100,12 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="internal-sdk.slnx" />
+    <None Include="LICENSE" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\features\features.cpp" />
+    <ClCompile Include="core\features\visuals\players.cpp" />
     <ClCompile Include="core\hooks\client\mouse_input.cpp" />
     <ClCompile Include="core\hooks\directx11\directx11.cpp" />
     <ClCompile Include="core\hooks\engine2\engine2.cpp" />
@@ -130,6 +133,8 @@
     <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\features\features.h" />
+    <ClInclude Include="core\features\visuals\players.h" />
     <ClInclude Include="core\hooks\client\mouse_input.h" />
     <ClInclude Include="core\hooks\directx11\directx11.h" />
     <ClInclude Include="core\hooks\engine2\engine2.h" />

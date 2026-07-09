@@ -12,6 +12,8 @@
 #include "client/mouse_input.h"
 #include "input_system/input_system.h"
 
+#include "../features/features.h"
+
 class HooksManager {
 public:
 	static bool Setup();
