@@ -129,6 +129,9 @@
     <ClCompile Include="ext\minhook\hde\hde64.cpp" />
     <ClCompile Include="ext\minhook\hook.cpp" />
     <ClCompile Include="ext\minhook\trampoline.cpp" />
+    <ClCompile Include="valve\classes\entities.cpp" />
+    <ClCompile Include="valve\classes\players.cpp" />
+    <ClCompile Include="valve\functions\entity_system.cpp" />
     <ClCompile Include="valve\interfaces\interfaces.cpp" />
     <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
@@ -264,6 +267,10 @@
     <ClInclude Include="ext\minhook\hde\table64.h" />
     <ClInclude Include="ext\minhook\minhook.h" />
     <ClInclude Include="ext\minhook\trampoline.h" />
+    <ClInclude Include="valve\classes\classes.h" />
+    <ClInclude Include="valve\classes\entities.h" />
+    <ClInclude Include="valve\classes\players.h" />
+    <ClInclude Include="valve\functions\entity_system.h" />
     <ClInclude Include="valve\interfaces\engine_client.h" />
     <ClInclude Include="valve\interfaces\input_system.h" />
     <ClInclude Include="valve\interfaces\interfaces.h" />

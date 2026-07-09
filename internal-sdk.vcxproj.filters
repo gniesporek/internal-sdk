@@ -103,6 +103,15 @@
     <ClCompile Include="core\features\visuals\players.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="valve\functions\entity_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="valve\classes\players.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="valve\classes\entities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -517,6 +526,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\features\visuals\players.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\functions\entity_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\classes\players.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\classes\entities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\classes\classes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
