@@ -61,7 +61,7 @@ int EntitySystem::GetEntityIndex(C_BaseEntity* entity)
 	[Console] Ent     2: class CCSPlayerController name ""
 	[Console] Ent     3: class CCSPlayerController name ""
 	[Console] Ent     4: class CCSPlayerController name ""
-[	Console] Ent     5: class CCSPlayerController name ""
+	[Console] Ent     5: class CCSPlayerController name ""
 	*/
 
 	int index = -1;
