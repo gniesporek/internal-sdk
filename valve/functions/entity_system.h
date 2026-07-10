@@ -7,9 +7,10 @@
 class EntitySystem 
 {
 public:
-	static bool Setup();
+	static inline EntitySystem* pEntitySystem = nullptr; // global pointer to the entity system instance
+
 	static C_BaseEntity* GetEntityByIndex(int index);
 	static C_BaseEntity* GetEntityByHandle(C_BaseHandle handle);
-private:
-	static inline EntitySystem* pEntitySystem;
+	static C_BaseEntity* CreateEntityByName(const char* szName);
+	static int GetHighestEntityIndex();
 };

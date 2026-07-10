@@ -132,6 +132,7 @@
     <ClCompile Include="valve\classes\entities.cpp" />
     <ClCompile Include="valve\classes\players.cpp" />
     <ClCompile Include="valve\functions\entity_system.cpp" />
+    <ClCompile Include="valve\functions\functions.cpp" />
     <ClCompile Include="valve\interfaces\interfaces.cpp" />
     <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
@@ -271,6 +272,7 @@
     <ClInclude Include="valve\classes\entities.h" />
     <ClInclude Include="valve\classes\players.h" />
     <ClInclude Include="valve\functions\entity_system.h" />
+    <ClInclude Include="valve\functions\functions.h" />
     <ClInclude Include="valve\interfaces\engine_client.h" />
     <ClInclude Include="valve\interfaces\input_system.h" />
     <ClInclude Include="valve\interfaces\interfaces.h" />

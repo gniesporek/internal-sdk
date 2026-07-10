@@ -3,14 +3,14 @@
 #include "core/hooks/hooks.h"
 #include "valve/interfaces/interfaces.h"
 
-#include "valve/functions/entity_system.h"
+#include "valve/functions/functions.h"
 
 unsigned long EntryPoint(HMODULE hModule)
 {
     Utils::Console::Attach();
     Utils::SDL3::Setup();
     Interfaces::Setup();
-    EntitySystem::Setup();
+    Functions::Setup();
 
     SchemaManager::Setup();
     HooksManager::Setup();
