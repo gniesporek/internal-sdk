@@ -51,3 +51,28 @@ int EntitySystem::GetHighestEntityIndex()
 
 	return highestIndex;
 }
+
+int EntitySystem::GetEntityIndex(C_BaseEntity* entity)
+{
+	/*
+	> cl_showents
+	[Console] Ent     0: class CWorld name ""
+	[Console] Ent     1: class CCSPlayerController name ""
+	[Console] Ent     2: class CCSPlayerController name ""
+	[Console] Ent     3: class CCSPlayerController name ""
+	[Console] Ent     4: class CCSPlayerController name ""
+[	Console] Ent     5: class CCSPlayerController name ""
+	*/
+
+	int index = -1;
+
+	typedef int(__fastcall* fnGetEntityIndex)(void*, int&);
+	static fnGetEntityIndex GetEntityIndexFn = (fnGetEntityIndex)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 8B 45 ? 44 8D 68"), 1, 5));
+
+	if (!GetEntityIndexFn)
+		return -1;
+
+	GetEntityIndexFn(entity, index);
+
+	return index;
+}

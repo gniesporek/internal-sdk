@@ -13,4 +13,5 @@ public:
 	static C_BaseEntity* GetEntityByHandle(C_BaseHandle handle);
 	static C_BaseEntity* CreateEntityByName(const char* szName);
 	static int GetHighestEntityIndex();
+	static int GetEntityIndex(C_BaseEntity* entity);
 };
