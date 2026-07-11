@@ -7,6 +7,8 @@
 
 #include "../ui/ui.h"
 
+#include "../cache/cache.h"
+
 #include "directx11/directx11.h"
 #include "engine2/engine2.h"
 #include "client/mouse_input.h"

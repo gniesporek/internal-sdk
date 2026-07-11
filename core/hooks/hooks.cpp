@@ -19,6 +19,9 @@ bool HooksManager::Setup()
 
 void HooksManager::Destroy()
 {
+    Cache::Cleanup();
+    RenderStackSystem::Clear();
+
     MH_DisableHook(MH_ALL_HOOKS);
     MH_RemoveHook(MH_ALL_HOOKS);
     MH_Uninitialize();
