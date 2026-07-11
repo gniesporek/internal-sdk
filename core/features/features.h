@@ -2,6 +2,8 @@
 
 #include "../hooks/hooks.h"
 
+#include "prediction/prediction.h"
+
 class Features {
 public:
 

@@ -100,9 +100,6 @@
     <ClCompile Include="core\features\features.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="core\features\visuals\players.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="valve\functions\entity_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -122,6 +119,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="core\hooks\client\remove_entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hooks\client\create_move.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\features\prediction\prediction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -537,9 +540,6 @@
     <ClInclude Include="core\features\features.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="core\features\visuals\players.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="valve\functions\entity_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -565,6 +565,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\hooks\client\remove_entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hooks\client\create_move.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\structs\c_csgo_input.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\prediction\prediction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

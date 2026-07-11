@@ -15,6 +15,7 @@
 #include "input_system/input_system.h"
 #include "client/add_entity.h"
 #include "client/remove_entity.h"
+#include "client/create_move.h"
 
 #include "../features/features.h"
 

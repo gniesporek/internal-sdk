@@ -32,4 +32,5 @@ class C_BaseEntity : public CEntityInstance
 {
 public:
     bool IsEntityPlayerController();
+    SCHEMA("C_BaseEntity","m_iHealth", GetHealth,int)
 };

@@ -15,6 +15,8 @@ bool HooksManager::Setup()
     CreateHook("MouseInput", "client.dll", "40 53 48 83 EC ? 80 B9 ? ? ? ? ? 48 8B D9 75 ? 48 8B 0D ? ? ? ? 48 8B 01", false, &MouseInput::oMouseInput, MouseInput::hkMouseInput);
     CreateHook("AddEntity", "client.dll", "48 89 74 24 ? 57 48 83 EC ? 41 B9 ? ? ? ? 41 8B C0 41 23 C1 48 8B F2 41 83 F8 ? 48 8B F9 44 0F 45 C8 41 81 F9 ? ? ? ? 73 ? FF 81", false, &AddEntity::oAddEntity, AddEntity::hkAddEntity);
     CreateHook("RemoveEntity", "client.dll", "48 89 74 24 ? 57 48 83 EC ? 41 B9 ? ? ? ? 41 8B C0 41 23 C1 48 8B F2 41 83 F8 ? 48 8B F9 44 0F 45 C8 41 81 F9 ? ? ? ? 73 ? FF 89", false, &RemoveEntity::oRemoveEntity, RemoveEntity::hkRemoveEntity);
+    CreateHook("CreateMove", "client.dll", "85 D2 0F 85 ? ? ? ? 48 8B C4 44 88 40", false, &CreateMove::oCreateMove, CreateMove::hkCreateMove);
+
     return true;
 }
 
