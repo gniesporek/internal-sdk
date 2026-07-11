@@ -26,5 +26,5 @@ private:
 class C_BaseEntity 
 {
 public:
-
+    bool IsEntityPlayerController();
 };

@@ -115,6 +115,9 @@
     <ClCompile Include="valve\functions\functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\cache\cache.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -544,6 +547,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="valve\functions\functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\cache\cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ext\fnv1a.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

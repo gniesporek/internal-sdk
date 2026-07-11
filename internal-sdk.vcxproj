@@ -104,6 +104,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="core\cache\cache.cpp" />
     <ClCompile Include="core\features\features.cpp" />
     <ClCompile Include="core\features\visuals\players.cpp" />
     <ClCompile Include="core\hooks\client\mouse_input.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="valve\math\math.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core\cache\cache.h" />
     <ClInclude Include="core\features\features.h" />
     <ClInclude Include="core\features\visuals\players.h" />
     <ClInclude Include="core\hooks\client\mouse_input.h" />
@@ -149,6 +151,7 @@
     <ClInclude Include="core\schema\schema.h" />
     <ClInclude Include="core\ui\ui.h" />
     <ClInclude Include="core\utils\utils.h" />
+    <ClInclude Include="ext\fnv1a.h" />
     <ClInclude Include="ext\freetype\include\dlg\dlg.h" />
     <ClInclude Include="ext\freetype\include\dlg\output.h" />
     <ClInclude Include="ext\freetype\include\freetype\config\ftconfig.h" />
