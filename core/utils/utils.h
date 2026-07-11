@@ -6,6 +6,8 @@
 #include <vector>
 #include <unordered_map>
 
+#include "../../ext/fnv1a.h"
+
 enum class ConsoleColor : WORD {
     Default = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE,
     Info = FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY,
@@ -44,7 +46,7 @@ public:
     class Memory {
     public:
         template <typename T, typename ... U>
-        T CallVMT(void* thisptr, const size_t index, U ... params)
+        static T CallVMT(void* thisptr, const size_t index, U ... params)
         {
             typedef T(__thiscall* Fn)(void*, decltype(params)...);
             return (*static_cast<Fn**>(thisptr))[index](thisptr, params...);

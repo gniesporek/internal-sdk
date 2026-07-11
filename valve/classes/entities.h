@@ -23,7 +23,12 @@ private:
     uint32_t nIndex;
 };
 
-class C_BaseEntity 
+class CEntityInstance {
+public:
+    CSchemaClassBinding* GetSchemaClassBinding();
+};
+
+class C_BaseEntity : public CEntityInstance
 {
 public:
     bool IsEntityPlayerController();

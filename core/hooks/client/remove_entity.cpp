@@ -4,7 +4,7 @@ void RemoveEntity::hkRemoveEntity(EntitySystem* entitySystem, C_BaseEntity* base
 {
 	Cache::RemoveFromCache(baseEntity);
 
-	MESSAGE_INFO("removed entity with index %d", EntitySystem::GetEntityIndex(baseEntity));
+	MESSAGE_INFO("removed entity %s with index %d", baseEntity->GetSchemaClassBinding()->szName, entitySystem->GetEntityIndex(baseEntity));
 
 	oRemoveEntity(entitySystem, baseEntity, handle);
 }
