@@ -107,7 +107,9 @@
     <ClCompile Include="core\cache\cache.cpp" />
     <ClCompile Include="core\features\features.cpp" />
     <ClCompile Include="core\features\visuals\players.cpp" />
+    <ClCompile Include="core\hooks\client\add_entity.cpp" />
     <ClCompile Include="core\hooks\client\mouse_input.cpp" />
+    <ClCompile Include="core\hooks\client\remove_entity.cpp" />
     <ClCompile Include="core\hooks\directx11\directx11.cpp" />
     <ClCompile Include="core\hooks\engine2\engine2.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
@@ -141,7 +143,9 @@
     <ClInclude Include="core\cache\cache.h" />
     <ClInclude Include="core\features\features.h" />
     <ClInclude Include="core\features\visuals\players.h" />
+    <ClInclude Include="core\hooks\client\add_entity.h" />
     <ClInclude Include="core\hooks\client\mouse_input.h" />
+    <ClInclude Include="core\hooks\client\remove_entity.h" />
     <ClInclude Include="core\hooks\directx11\directx11.h" />
     <ClInclude Include="core\hooks\engine2\engine2.h" />
     <ClInclude Include="core\hooks\hooks.h" />

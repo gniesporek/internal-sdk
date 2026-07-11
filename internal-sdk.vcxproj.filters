@@ -118,6 +118,12 @@
     <ClCompile Include="core\cache\cache.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\hooks\client\add_entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core\hooks\client\remove_entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -553,6 +559,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ext\fnv1a.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hooks\client\add_entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hooks\client\remove_entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

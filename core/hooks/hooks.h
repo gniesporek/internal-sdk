@@ -13,6 +13,8 @@
 #include "engine2/engine2.h"
 #include "client/mouse_input.h"
 #include "input_system/input_system.h"
+#include "client/add_entity.h"
+#include "client/remove_entity.h"
 
 #include "../features/features.h"
 

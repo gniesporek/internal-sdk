@@ -4,6 +4,8 @@
 
 #include "../../valve/classes/classes.h"
 
+#include "../../valve/functions/entity_system.h"
+
 #include <unordered_map>
 #include <shared_mutex>
 
