@@ -64,10 +64,15 @@ int EntitySystem::GetEntityIndex(C_BaseEntity* entity)
 	[Console] Ent     5: class CCSPlayerController name ""
 	*/
 
+	/*
+	  sub_150F540(v13, &v24);
+      ConMsg("Ent %5d: class %s name \"%s\"\n", v24, v15, v14);
+	*/
+
 	int index = -1;
 
 	typedef int(__fastcall* fnGetEntityIndex)(void*, int&);
-	static fnGetEntityIndex GetEntityIndexFn = (fnGetEntityIndex)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 8B 45 ? 44 8D 68"), 1, 5));
+	static fnGetEntityIndex GetEntityIndexFn = (fnGetEntityIndex)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 39 5C 24 ? 75 ? 48 8B 57"), 1, 5));
 
 	if (!GetEntityIndexFn)
 		return -1;
