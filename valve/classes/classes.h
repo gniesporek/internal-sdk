@@ -4,5 +4,7 @@
 
 #include "../../core/schema/schema.h"
 
+#include "../math/math.h"
+
 #include "entities.h"
 #include "players.h"

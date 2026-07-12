@@ -8,6 +8,25 @@ bool C_BaseEntity::IsEntityPlayerController()
     return false;
 }
 
+bool C_BaseEntity::IsEntityPlayer()
+{
+    if (FNV1A::Hash(this->GetSchemaClassBinding()->szName) == FNV1A::Hash("C_CSPlayerPawn"))
+        return true;
+
+    return false;
+}
+
+bool C_BaseEntity::ComputeHitboxSurroundingBox(Vector3D* mins, Vector3D* maxs)
+{
+    // https://imgur.com/a/qQVFft7
+    // char __fastcall ComputeHitboxSurroundingBox(__int64 a1, unsigned __int64 *a2, float *a3)
+
+    typedef bool(__fastcall* fnComputeHitboxSurroundingBox)(C_BaseEntity*, Vector3D*, Vector3D*);
+    static auto ComputeHitboxSurroundingBoxFn = (fnComputeHitboxSurroundingBox)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 55 41 56 41 57 48 8D AC 24 ? ? ? ? B8 ? ? ? ? E8 ? ? ? ? 48 2B E0 48 8B FA"));
+    return ComputeHitboxSurroundingBoxFn(this, mins, maxs);
+
+}
+
 CSchemaClassBinding* CEntityInstance::GetSchemaClassBinding()
 {
     /*

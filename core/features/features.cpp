@@ -2,7 +2,5 @@
 
 void Features::Drawing::Paint()
 {
-	
-
 
 }

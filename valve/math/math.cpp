@@ -36,3 +36,48 @@ bool Math::WorldToScreen(const Vector3D& worldPos, Vector2D& screenPos)
 
     return true;
 }
+
+bool Math::CalculateBoundingBox(C_BaseEntity* pEntity, BoundingBox& bbox, bool compute = false)
+{
+    Vector3D mins, maxs;
+
+    // source 2 uses weird calcs for players/entities at map for player we do not use compute for rest we use
+    if (compute) {
+        if (!pEntity->ComputeHitboxSurroundingBox(&mins, &maxs))
+            return false;
+    }
+    else {
+        mins = pEntity->GetCollisionProperty()->GetMins() + pEntity->GetSceneNode()->GetAbsOrigin();
+        maxs = pEntity->GetCollisionProperty()->GetMaxs() + pEntity->GetSceneNode()->GetAbsOrigin();
+    }
+
+    // basic 8 points math from source 1 nothing else
+    Vector3D worldPoints[8] = 
+    {
+         {mins.x, mins.y, mins.z}, {mins.x, maxs.y, mins.z}, {maxs.x, maxs.y, mins.z}, {maxs.x, mins.y, mins.z},
+         {maxs.x, maxs.y, maxs.z}, {mins.x, maxs.y, maxs.z}, {mins.x, mins.y, maxs.z}, {maxs.x, mins.y, maxs.z}
+    };
+
+    Vector2D screenPoints[8];
+
+    for (int i = 0; i < 8; ++i)
+        if (!WorldToScreen(worldPoints[i], screenPoints[i]))
+            return false;
+
+    int left = screenPoints[0].x, right = left;
+    int top = screenPoints[0].y, bottom = top;
+
+    for (int i = 1; i < 8; ++i) {
+        left = min(left, screenPoints[i].x);
+        top = min(top, screenPoints[i].y);
+        right = max(right, screenPoints[i].x);
+        bottom = max(bottom, screenPoints[i].y);
+    }
+
+    bbox.x = left;
+    bbox.y = top;
+    bbox.w = right - left;
+    bbox.h = bottom - top;
+
+    return true;
+}

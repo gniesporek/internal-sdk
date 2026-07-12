@@ -107,6 +107,7 @@
     <ClCompile Include="core\cache\cache.cpp" />
     <ClCompile Include="core\features\features.cpp" />
     <ClCompile Include="core\features\prediction\prediction.cpp" />
+    <ClCompile Include="core\features\visuals\visuals.cpp" />
     <ClCompile Include="core\hooks\client\add_entity.cpp" />
     <ClCompile Include="core\hooks\client\create_move.cpp" />
     <ClCompile Include="core\hooks\client\mouse_input.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="core\cache\cache.h" />
     <ClInclude Include="core\features\features.h" />
     <ClInclude Include="core\features\prediction\prediction.h" />
+    <ClInclude Include="core\features\visuals\visuals.h" />
     <ClInclude Include="core\hooks\client\add_entity.h" />
     <ClInclude Include="core\hooks\client\create_move.h" />
     <ClInclude Include="core\hooks\client\mouse_input.h" />

@@ -127,6 +127,9 @@
     <ClCompile Include="core\features\prediction\prediction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\features\visuals\visuals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -574,6 +577,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\features\prediction\prediction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\visuals\visuals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
