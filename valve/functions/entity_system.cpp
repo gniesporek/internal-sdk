@@ -4,7 +4,7 @@ C_BaseEntity* EntitySystem::GetEntityByIndex(int index)
 {
 	// "'%s' : '%s' (entindex %d) \n", "Found no entity at %d.\n", "Format: ent_find_index <index>\n"
 	typedef C_BaseEntity* (__fastcall* fnGetBaseEntity)(EntitySystem*, int);
-	static auto fnGetEntity = (fnGetBaseEntity)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E9 ? ? ? ? CC CC 48 8B 89"), 1, 5));
+	static auto fnGetEntity = (fnGetBaseEntity)(Utils::Memory::SignatureScan("client.dll", "48 83 EC ? 83 BA ? ? ? ? ? 7D ? 48 8D 0D"));
 	return fnGetEntity(EntitySystem::pEntitySystem, index);
 }
 
@@ -25,7 +25,7 @@ C_BaseEntity* EntitySystem::CreateEntityByName(const char* szName)
 {
 	// "Attempted to create unknown entity classname \"%s\"!\n"
 	typedef C_BaseEntity* (__fastcall* fnCreateEntityByName)(EntitySystem* a1, int a2, const char* a3, int a4, int a5, int a6, char a7);
-	static fnCreateEntityByName CreateEntity = (fnCreateEntityByName)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 48 8B D8 48 85 C0 75 ? 33 C0 EB ? 48 8B 48"), 1, 5));
+	static fnCreateEntityByName CreateEntity = (fnCreateEntityByName)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 49 8B F8"));
 	return CreateEntity(EntitySystem::pEntitySystem, -1, szName, 0, -1, -1, 0);
 }
 
@@ -72,7 +72,7 @@ int EntitySystem::GetEntityIndex(C_BaseEntity* entity)
 	int index = -1;
 
 	typedef int(__fastcall* fnGetEntityIndex)(void*, int&);
-	static fnGetEntityIndex GetEntityIndexFn = (fnGetEntityIndex)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 39 5C 24 ? 75 ? 48 8B 57"), 1, 5));
+	static fnGetEntityIndex GetEntityIndexFn = (fnGetEntityIndex)(Utils::Memory::SignatureScan("client.dll", "48 83 EC ? 4C 8B 0D ? ? ? ? 4C 8B DA"));
 
 	if (!GetEntityIndexFn)
 		return -1;
