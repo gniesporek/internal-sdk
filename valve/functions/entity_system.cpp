@@ -3,9 +3,19 @@
 C_BaseEntity* EntitySystem::GetEntityByIndex(int index)
 {
 	// "'%s' : '%s' (entindex %d) \n", "Found no entity at %d.\n", "Format: ent_find_index <index>\n"
+
+	//   v4 = sub_AA47A0(v3);
+
+	/*
+		__int64 __fastcall sub_AA47A0(unsigned int a1)
+		{
+			return sub_9ABE10(qword_2391528, a1);
+		}
+	*/
+
 	typedef C_BaseEntity* (__fastcall* fnGetBaseEntity)(EntitySystem*, int);
-	static auto fnGetEntity = (fnGetBaseEntity)(Utils::Memory::SignatureScan("client.dll", "48 83 EC ? 83 BA ? ? ? ? ? 7D ? 48 8D 0D"));
-	return fnGetEntity(EntitySystem::pEntitySystem, index);
+	static auto fnGetEntityByIndex = (fnGetBaseEntity)(Utils::Memory::SignatureScan("client.dll", "4C 8D 49 ? 81 FA"));
+	return fnGetEntityByIndex(EntitySystem::pEntitySystem, index);
 }
 
 C_BaseEntity* EntitySystem::GetEntityByHandle(C_BaseHandle handle)
