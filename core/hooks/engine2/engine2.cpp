@@ -17,3 +17,10 @@ void __fastcall OnClientOutput::hkOnClientOutput(__int64 a1, __int64 a2)
 
 	oOnClientOutput(a1, a2);
 }
+
+void __fastcall NetworkGameClientWrapper::hkNetworkGameClientWrapper(__int64 a1)
+{
+	NetworkGameClientWrapper::pNetworkGameClientWrapper = (void*)a1;
+
+	oNetworkGameClientWrapper(a1);
+}

@@ -7,10 +7,8 @@ void Prediction::RunClientPrediction(PredictionStage predictionStage)
 	if (!ClientSidePrediction)
 		return;
 
-	static uintptr_t NetworkGameClient = *(uintptr_t*)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("engine2.dll", "48 89 1D ? ? ? ? 48 8D 15 ? ? ? ? 48 8B 07"), 3, 7));
-
-	if (!NetworkGameClient)
+	if (!NetworkGameClientWrapper::pNetworkGameClientWrapper)
 		return;
 
-	ClientSidePrediction((void*)NetworkGameClient, predictionStage);
+	ClientSidePrediction(NetworkGameClientWrapper::pNetworkGameClientWrapper, predictionStage);
 }
