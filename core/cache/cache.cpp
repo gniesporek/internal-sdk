@@ -22,9 +22,13 @@ void Cache::Cleanup()
 std::vector<Cache::Entities> Cache::GetEntitiesFromCache()
 {
 	std::shared_lock lock(sharedMutex);
+
 	std::vector<Entities> entities;
+
 	entities.reserve(EntityMap.size());
+
 	for (auto& [key, info] : EntityMap)
 		entities.push_back(info);
+
 	return entities;
 }

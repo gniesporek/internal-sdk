@@ -130,6 +130,9 @@
     <ClCompile Include="core\features\visuals\visuals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\ui\widgets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -580,6 +583,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\features\visuals\visuals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ui\widgets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ui\controls\controls.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

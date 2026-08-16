@@ -120,6 +120,7 @@
     <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="core\schema\schema.cpp" />
     <ClCompile Include="core\ui\ui.cpp" />
+    <ClCompile Include="core\ui\widgets.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
     <ClCompile Include="entry_point.cpp" />
     <ClCompile Include="ext\imgui\imgui.cpp" />
@@ -157,7 +158,9 @@
     <ClInclude Include="core\renderer\drawing.h" />
     <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="core\schema\schema.h" />
+    <ClInclude Include="core\ui\controls\controls.h" />
     <ClInclude Include="core\ui\ui.h" />
+    <ClInclude Include="core\ui\widgets.h" />
     <ClInclude Include="core\utils\utils.h" />
     <ClInclude Include="ext\fnv1a.h" />
     <ClInclude Include="ext\freetype\include\dlg\dlg.h" />

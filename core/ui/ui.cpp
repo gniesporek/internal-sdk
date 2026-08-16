@@ -1,16 +1,16 @@
 #include "ui.h"
 
-
 void UI::Setup()
 {
     if (!UI::Toggled)
         return;
 
     if (UI::Toggled)
-		Draw::Rect::Fill(Vector2D(WindowPosition.x, WindowPosition.y), Vector2D(WindowSize.x, WindowSize.y), Colors(0, 0, 0, 100));
+        Draw::Rect::Fill(Vector2D(0, 0), Vector2D(ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y), Colors(0, 0, 0, 100));
 
     UI::Start();
-
+    
+    Widgets::DrawForm(WindowPosition, WindowSize, "internal public");
 
     UI::End();
 }

@@ -24,6 +24,7 @@ public:
 	static void PushToCache(C_BaseEntity* pEntity, C_BaseHandle baseHandle, CCSPlayerController* pController, int entityIndex);
 	static void RemoveFromCache(C_BaseEntity* pEntity);
 	static void Cleanup();
+
 	static std::vector<Entities> GetEntitiesFromCache();
 private:
 	static inline std::unordered_map<C_BaseEntity*, Entities> EntityMap;
