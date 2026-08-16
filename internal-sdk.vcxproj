@@ -78,7 +78,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='live|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
@@ -119,6 +119,7 @@
     <ClCompile Include="core\renderer\drawing.cpp" />
     <ClCompile Include="core\renderer\renderer.cpp" />
     <ClCompile Include="core\schema\schema.cpp" />
+    <ClCompile Include="core\ui\controls\controls.cpp" />
     <ClCompile Include="core\ui\ui.cpp" />
     <ClCompile Include="core\ui\widgets.cpp" />
     <ClCompile Include="core\utils\utils.cpp" />
@@ -159,7 +160,9 @@
     <ClInclude Include="core\renderer\renderer.h" />
     <ClInclude Include="core\schema\schema.h" />
     <ClInclude Include="core\ui\controls\controls.h" />
+    <ClInclude Include="core\ui\input_manager.h" />
     <ClInclude Include="core\ui\ui.h" />
+    <ClInclude Include="core\ui\controls\variables.h" />
     <ClInclude Include="core\ui\widgets.h" />
     <ClInclude Include="core\utils\utils.h" />
     <ClInclude Include="ext\fnv1a.h" />

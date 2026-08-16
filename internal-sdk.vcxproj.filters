@@ -133,6 +133,9 @@
     <ClCompile Include="core\ui\widgets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\ui\controls\controls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -589,6 +592,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\ui\controls\controls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ui\input_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\ui\controls\variables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

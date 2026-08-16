@@ -27,6 +27,11 @@ bool C_BaseEntity::ComputeHitboxSurroundingBox(Vector3D* mins, Vector3D* maxs)
 
 }
 
+bool C_BaseEntity::IsEntityAlive()
+{
+    return this->GetHealth() > 0;
+}
+
 CSchemaClassBinding* CEntityInstance::GetSchemaClassBinding()
 {
     /*

@@ -3,6 +3,8 @@
 #include "../hooks/hooks.h"
 
 #include "prediction/prediction.h"
+#include "visuals/visuals.h"
+
 
 class Features {
 public:

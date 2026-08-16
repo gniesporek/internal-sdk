@@ -1,5 +1,5 @@
 #include "widgets.h"
-int selectedSubtab = 0;
+
 void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
 {
     Colors colors[] = { Colors(0, 0, 0, 255),  Colors(60, 60, 60, 255),Colors(40, 40, 40, 255), Colors(60, 60, 60, 255) };
@@ -19,7 +19,29 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
 
 	Widgets::Dropdown(Vector2D(position.x + 20, position.y + 50), { "assistance","visuals","miscellaneous"}, selectedSubtab);
 
-    //Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "general", 258);
+    switch (selectedSubtab)
+    {
+    case 0:
+        Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "assistance configuration", 258);
+
+        break;
+
+    case 1:
+        Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "visuals configuration", 258);
+
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 59), "enable", Variables::Visuals::Enable);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 74), "bounding box", Variables::Visuals::BoundingBox);
+
+        break;
+
+    case 2:
+        Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "miscellaneous configuration", 258);
+
+        break;
+
+    default:
+        break;
+    }
 }
 
 void Widgets::Dropdown(Vector2D Position, const std::vector<std::string>& options, int& selectedSubtab)
