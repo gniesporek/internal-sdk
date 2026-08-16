@@ -2,6 +2,8 @@
 
 #include <cstdlib>
 
+#include "../../core/utils/utils.h"
+
 class Vector2D {
 public:
 	float x, y;
@@ -57,6 +59,10 @@ public:
 	Vector3D operator/(float scalar) const {
 		return Vector3D(x / scalar, y / scalar, z / scalar);
 	}
+
+	bool IsZero() const {
+		return x == 0 && y == 0 && z == 0;
+	}
 };
 
 class Vector4D {
@@ -93,4 +99,63 @@ public:
 	char pad0[0x4];
 	T* data;
 	char pad1[0x8];
+};
+
+template <typename T>
+struct RepeatedPtrField_t
+{
+public:
+
+	struct Rep_t
+	{
+		int nAllocatedSize;
+		T* tElements[(2147483647 - 2 * sizeof(int)) / sizeof(void*)];
+	};
+
+	void* pArena;
+	int nCurrentSize;
+	int nTotalSize;
+	Rep_t* pRep;
+
+	template <typename T>
+	T* Add(T* element)
+	{
+		typedef T* (__fastcall* AddElementFunc_t)(void*, T*);
+		static AddElementFunc_t AddElementFunc = (AddElementFunc_t)Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 57 48 83 EC ? 48 8B D9 48 8B FA 48 8B 49 ? 48 85 C9 74 ? 8B 01");
+		return AddElementFunc(this, element);
+	}
+};
+
+class TimeStamp
+{
+public:
+	int tick{};
+	float fraction{};
+
+	TimeStamp(float t)
+	{
+		auto temp = std::fmodf(t, 0.015625f);
+		fraction = temp * 64;
+		tick = TIME_TO_TICKS(t - temp);
+		Normalize();
+	}
+
+	void Normalize()
+	{
+		if (fraction < 1.f)
+		{
+			if (fraction <= 0.f)
+				fraction = 0.f;
+		}
+		else
+		{
+			tick++;
+			fraction = 0.f;
+		}
+	}
+
+	float ToTime()
+	{
+		return static_cast<float>(tick) * 0.015625f + fraction * 0.015625;
+	}
 };

@@ -4,6 +4,8 @@
 #include <Windows.h>
 #include <thread>
 #include <vector>
+#include <cstdint>
+#include <algorithm>
 #include <unordered_map>
 
 #include "../../ext/fnv1a.h"
@@ -24,6 +26,11 @@ enum class ConsoleColor : WORD {
 #define PAD_CONCAT(a, b) a##b
 #define PAD_MAKE(a, b) PAD_CONCAT(a, b)
 #define PAD(size) char PAD_MAKE(pad_, __COUNTER__)[size];
+
+#define TICK_INTERVAL			0.015625f
+#define TIME_TO_TICKS( dt )		( (int)( 0.5f + (float)(dt) / TICK_INTERVAL ) )
+#define TICKS_TO_TIME( t )		( TICK_INTERVAL *( t ) )
+#define ROUND_TO_TICKS( t )		( TICK_INTERVAL * TIME_TO_TICKS( t ) )
 
 class Utils {
 public:

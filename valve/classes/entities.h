@@ -48,6 +48,7 @@ public:
     bool ComputeHitboxSurroundingBox(Vector3D* mins, Vector3D* maxs);
     bool IsEntityAlive();
     SCHEMA("C_BaseEntity","m_iHealth", GetHealth,int)
+	SCHEMA("C_BaseEntity", "m_iMaxHealth", GetMaxHealth, int)
     SCHEMA("C_BaseEntity", "m_pGameSceneNode",GetSceneNode,CGameSceneNode*)
     SCHEMA("C_BaseEntity","m_pCollision",GetCollisionProperty,CCollisionProperty*)
     SCHEMA("C_BaseEntity","m_iTeamNum",GetTeamNum,int)

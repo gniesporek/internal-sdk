@@ -31,6 +31,8 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
 
 		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 59), "enable", Variables::Visuals::Enable);
 		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 74), "bounding box", Variables::Visuals::BoundingBox);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 89), "name", Variables::Visuals::Name);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 104), "health bar", Variables::Visuals::Health);
 
         break;
 

@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core\cache\cache.cpp" />
+    <ClCompile Include="core\features\assistance\assistance.cpp" />
     <ClCompile Include="core\features\features.cpp" />
     <ClCompile Include="core\features\prediction\prediction.cpp" />
     <ClCompile Include="core\features\visuals\visuals.cpp" />
@@ -142,9 +143,11 @@
     <ClCompile Include="valve\functions\functions.cpp" />
     <ClCompile Include="valve\interfaces\interfaces.cpp" />
     <ClCompile Include="valve\math\math.cpp" />
+    <ClCompile Include="valve\structs\c_user_cmd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\cache\cache.h" />
+    <ClInclude Include="core\features\assistance\assistance.h" />
     <ClInclude Include="core\features\features.h" />
     <ClInclude Include="core\features\prediction\prediction.h" />
     <ClInclude Include="core\features\visuals\visuals.h" />
@@ -290,6 +293,7 @@
     <ClInclude Include="valve\classes\players.h" />
     <ClInclude Include="valve\functions\entity_system.h" />
     <ClInclude Include="valve\functions\functions.h" />
+    <ClInclude Include="valve\globals.h" />
     <ClInclude Include="valve\interfaces\engine_client.h" />
     <ClInclude Include="valve\interfaces\input_system.h" />
     <ClInclude Include="valve\interfaces\interfaces.h" />
@@ -297,6 +301,7 @@
     <ClInclude Include="valve\math\math.h" />
     <ClInclude Include="valve\structs\colors.h" />
     <ClInclude Include="valve\structs\c_csgo_input.h" />
+    <ClInclude Include="valve\structs\c_user_cmd.h" />
     <ClInclude Include="valve\vectors\vectors.h" />
   </ItemGroup>
   <ItemGroup>

@@ -136,6 +136,12 @@
     <ClCompile Include="core\ui\controls\controls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\features\assistance\assistance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="valve\structs\c_user_cmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -598,6 +604,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\ui\controls\variables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\features\assistance\assistance.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\structs\c_user_cmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

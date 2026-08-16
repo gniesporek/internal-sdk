@@ -2,6 +2,8 @@
 
 #include "../hooks/hooks.h"
 
+#include "../../valve/globals.h"
+
 #include "prediction/prediction.h"
 #include "visuals/visuals.h"
 
