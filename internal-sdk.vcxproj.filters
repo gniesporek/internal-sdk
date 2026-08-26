@@ -142,6 +142,9 @@
     <ClCompile Include="valve\structs\c_user_cmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="valve\functions\hitbox_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -613,6 +616,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="valve\globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\functions\hitbox_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

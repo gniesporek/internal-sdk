@@ -159,3 +159,90 @@ public:
 		return static_cast<float>(tick) * 0.015625f + fraction * 0.015625;
 	}
 };
+
+
+class Matrix2x4_t {
+public:
+	float data[2][4];
+
+	Matrix2x4_t() {
+		for (int i = 0; i < 2; ++i)
+			for (int j = 0; j < 4; ++j)
+				data[i][j] = 0.0f;
+	}
+};
+
+class Matrix3x3_t {
+public:
+	float data[3][3];
+
+	Matrix3x3_t() {
+		for (int i = 0; i < 3; ++i)
+			for (int j = 0; j < 3; ++j)
+				data[i][j] = 0.0f;
+	}
+};
+
+class Matrix3x4_t {
+public:
+	float data[3][4];
+
+	Matrix3x4_t() {
+		for (int i = 0; i < 3; ++i)
+			for (int j = 0; j < 4; ++j)
+				data[i][j] = 0.0f;
+	}
+};
+
+
+class alignas(16) Transform_t
+{
+public:
+	alignas(16) Vector3D m_pos;
+	alignas(16) Vector4D m_rot;
+
+	Matrix3x4_t ToMatrix3x4() const
+	{
+		return ToMatrix3x4(m_pos);
+	}
+
+	Matrix3x4_t ToMatrix3x4(const Vector3D& origin) const
+	{
+		Matrix3x4_t matrix{};
+
+		const float x = m_rot.x;
+		const float y = m_rot.y;
+		const float z = m_rot.z;
+		const float w = m_rot.w;
+
+		const float xx = x * x;
+		const float yy = y * y;
+		const float zz = z * z;
+
+		const float xy = x * y;
+		const float xz = x * z;
+		const float yz = y * z;
+
+		const float wx = w * x;
+		const float wy = w * y;
+		const float wz = w * z;
+
+		matrix.data[0][0] = 1.f - 2.f * (yy + zz);
+		matrix.data[0][1] = 2.f * (xy - wz);
+		matrix.data[0][2] = 2.f * (xz + wy);
+
+		matrix.data[1][0] = 2.f * (xy + wz);
+		matrix.data[1][1] = 1.f - 2.f * (xx + zz);
+		matrix.data[1][2] = 2.f * (yz - wx);
+
+		matrix.data[2][0] = 2.f * (xz - wy);
+		matrix.data[2][1] = 2.f * (yz + wx);
+		matrix.data[2][2] = 1.f - 2.f * (xx + yy);
+
+		matrix.data[0][3] = origin.x;
+		matrix.data[1][3] = origin.y;
+		matrix.data[2][3] = origin.z;
+
+		return matrix;
+	}
+};

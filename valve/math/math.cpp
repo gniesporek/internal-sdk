@@ -81,3 +81,10 @@ bool Math::CalculateBoundingBox(C_BaseEntity* pEntity, BoundingBox& bbox, bool c
 
     return true;
 }
+
+void Math::VectorTransform(const Vector3D& in, const Matrix3x4_t& matrix, Vector3D& out)
+{
+    out.x = in.x * matrix.data[0][0] + in.y * matrix.data[0][1] + in.z * matrix.data[0][2] + matrix.data[0][3];
+    out.y = in.x * matrix.data[1][0] + in.y * matrix.data[1][1] + in.z * matrix.data[1][2] + matrix.data[1][3];
+    out.z = in.x * matrix.data[2][0] + in.y * matrix.data[2][1] + in.z * matrix.data[2][2] + matrix.data[2][3];
+}

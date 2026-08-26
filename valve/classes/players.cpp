@@ -27,3 +27,26 @@ float C_CSPlayerPawn::GetInterpolationTiming(int a, int b)
 	static auto GetInterpolationTiming = (oFnGetInterpolationTiming)Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC ? 49 63 D8 48 8B F1");
 	return GetInterpolationTiming(this, a, b);
 }
+
+CHitboxSet* C_CSPlayerPawn::GetHitboxSet()
+{
+	// 48 89 5C 24 08 48 89 74 24 10 57 48 81 EC 40 01 00 00 8B DA 48 8B F9 E8 ?? ?? ?? ?? client.dll
+	typedef CHitboxSet* (__thiscall* oFnGetHitboxSet)(C_CSPlayerPawn*, int);
+	static auto GetHitboxSet = (oFnGetHitboxSet)Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 08 48 89 74 24 10 57 48 81 EC 40 01 00 00 8B DA 48 8B F9 E8 ?? ?? ?? ??");
+	if (!GetHitboxSet)
+		return nullptr;
+
+	return GetHitboxSet(this, 0);
+}
+
+
+int C_CSPlayerPawn::HitboxToWorldTransform(CHitboxSet* hitboxSet, Transform_t* transform)
+{
+	// 48 89 5C 24 18 55 56 57 41 56 41 57 48 83 EC 20 41
+	typedef int(__thiscall* fnHitboxToWorldTransform)(C_CSPlayerPawn*, CHitboxSet*, Transform_t*, int);
+	static auto HitboxToWorldTransform = (fnHitboxToWorldTransform)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 18 55 56 57 41 56 41 57 48 83 EC 20 41"));
+	if (HitboxToWorldTransform)
+		return HitboxToWorldTransform(this, hitboxSet, transform, 1024);
+
+	return 0;
+}

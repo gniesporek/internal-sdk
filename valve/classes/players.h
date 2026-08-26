@@ -1,5 +1,6 @@
 #pragma once
 
+class CHitboxSet;
 
 class CCSPlayerController
 {
@@ -16,5 +17,6 @@ class C_CSPlayerPawn : public C_BaseEntity {
 public:
 	static C_CSPlayerPawn* GetLocalPlayer();
 	float GetInterpolationTiming(int a, int b);
-
+	CHitboxSet* GetHitboxSet();
+	int HitboxToWorldTransform(CHitboxSet* hitboxSet, Transform_t* transform);
 };
