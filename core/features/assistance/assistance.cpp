@@ -3,7 +3,7 @@
 void Assistance::Run(CUserCmd* pCommand)
 {
 
-	if (!Interfaces::pEngineClient->IsInGame() || !Interfaces::pEngineClient->IsInGame())
+	if (!Interfaces::pEngineClient->IsInGame() || !Interfaces::pEngineClient->IsConnected())
 		return;
 
 	if (!Variables::Assistance::Enable)
