@@ -19,4 +19,7 @@ void CreateMove::hkCreateMove(CCSGOInput* a1, int a2, char a3)
 	CUserCmd* pUserCmd = CUserCmd::GetUserCmd(Globals::LocalPlayerController);
 	if (!pUserCmd || !pUserCmd->CSGOUserCmd.BaseUserCmd || !pUserCmd->CSGOUserCmd.BaseUserCmd->ViewAngles)
 		return;
+
+	Assistance::Run(pUserCmd);
+
 }

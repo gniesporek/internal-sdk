@@ -24,6 +24,9 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
     case 0:
         Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "assistance configuration", 258);
 
+        Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 59), "enable", Variables::Assistance::Enable);
+        Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 74), "render target", Variables::Assistance::RenderTarget);
+
         break;
 
     case 1:

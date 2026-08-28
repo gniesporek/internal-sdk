@@ -6,6 +6,7 @@
 
 #include "prediction/prediction.h"
 #include "visuals/visuals.h"
+#include "assistance/assistance.h"
 
 
 class Features {
