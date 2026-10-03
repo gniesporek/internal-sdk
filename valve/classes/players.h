@@ -11,6 +11,7 @@ public:
 	
 	uint32_t SetTickBase(uint32_t tickBase);
 	static CCSPlayerController* GetLocalPlayer(); 
+	void RunPhysicsThink();
 };
 
 class C_CSPlayerPawn : public C_BaseEntity {
@@ -19,4 +20,8 @@ public:
 	float GetInterpolationTiming(int a, int b);
 	CHitboxSet* GetHitboxSet();
 	int HitboxToWorldTransform(CHitboxSet* hitboxSet, Transform_t* transform);
+	SCHEMA("C_BasePlayerPawn","m_pItemServices",GetItemServcices, CPlayer_ItemServices*)
+	SCHEMA("C_CSPlayerPawn","m_ArmorValue",GetArmor,int)
+	SCHEMA("C_BasePlayerPawn", "m_pMovementServices", GetMovementServices, CPlayerMovementServices*)
+	SCHEMA("C_BasePlayerPawn","m_pWeaponServices",GetWeaponServices,CPlayer_WeaponServices*)
 };

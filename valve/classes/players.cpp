@@ -13,6 +13,13 @@ CCSPlayerController* CCSPlayerController::GetLocalPlayer()
 	return GetLocalPlayerFn(-1);
 }
 
+void CCSPlayerController::RunPhysicsThink()
+{
+	typedef void(__thiscall* fnRunPhyicsThink)(CCSPlayerController*);
+	static auto RunPhysics = (fnRunPhyicsThink)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 57 48 81 EC ? ? ? ? 48 8B 01 48 8B F9"));
+	RunPhysics(this);
+}
+
 C_CSPlayerPawn* C_CSPlayerPawn::GetLocalPlayer()
 {
 	// "GetLocalPlayerPawn"
