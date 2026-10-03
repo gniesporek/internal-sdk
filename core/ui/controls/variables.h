@@ -6,7 +6,6 @@ public:
 	class Assistance {
 	public:
 		static inline bool Enable = false;
-		static inline int Radius = 180;
 		static inline bool RenderTarget = false;
 	};
 

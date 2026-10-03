@@ -16,6 +16,8 @@ void CreateMove::hkCreateMove(CCSGOInput* a1, int a2, char a3)
 	if (!Globals::LocalPlayerController)
 		return;
 
+	Globals::ActiveWeapon = (C_CSWeapon*)EntitySystem::GetEntityByHandle(Globals::LocalPlayerPawn->GetWeaponServices()->GetWeaponHandle());
+
 	CUserCmd* pUserCmd = CUserCmd::GetUserCmd(Globals::LocalPlayerController);
 	if (!pUserCmd || !pUserCmd->CSGOUserCmd.BaseUserCmd || !pUserCmd->CSGOUserCmd.BaseUserCmd->ViewAngles)
 		return;

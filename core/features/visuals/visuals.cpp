@@ -39,7 +39,9 @@ void Visuals::Overlay(std::vector<Cache::Entities> entities)
 			if (!Math::CalculateBoundingBox(pTargetPawn, bbox, false))
 				continue;
 
-			RenderStackSystem::Text::Shadow(ImGui::GetFont(), bbox.x + (bbox.w / 2) - (RenderStackSystem::Text::GetTextWidth(ImGui::GetFont(), "target") / 2), bbox.y - 15, "target", Colors(255, 0, 0, 255), Colors::Black(180), 1.f, false);
+			int height = Variables::Visuals::Name ? bbox.y - 27 : bbox.y - 15;
+
+			RenderStackSystem::Text::Shadow(ImGui::GetFont(), bbox.x + (bbox.w / 2) - (RenderStackSystem::Text::GetTextWidth(ImGui::GetFont(), "target") / 2), height, "target", Colors(255, 0, 0, 255), Colors::Black(180), 1.f, false);
 
 		}
 

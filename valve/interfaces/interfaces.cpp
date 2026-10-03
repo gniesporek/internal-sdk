@@ -6,6 +6,8 @@ bool Interfaces::Setup()
 	pEngineClient = (CEngineClient*)GetInterface("engine2.dll", "Source2EngineToClient001");
 	pInputSystem = (CInputSystem*)GetInterface("inputsystem.dll", "InputSystemVersion001");
 	pConVar = (IEngineCvar*)GetInterface("tier0.dll", "VEngineCvar007");
+
+	pCSGOInput = (CCSGOInput*)Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "48 89 05 ? ? ? ? 0F 57 C0 0F 11 05"), 3, 7);
 	return true;
 }
 

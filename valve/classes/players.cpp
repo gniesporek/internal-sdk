@@ -49,9 +49,9 @@ CHitboxSet* C_CSPlayerPawn::GetHitboxSet()
 
 int C_CSPlayerPawn::HitboxToWorldTransform(CHitboxSet* hitboxSet, Transform_t* transform)
 {
-	// 48 89 5C 24 18 55 56 57 41 56 41 57 48 83 EC 20 41
+	// 48 89 5C 24 ? 56 57 41 54 41 56 41 57 48 83 EC ? 41 8B F1
 	typedef int(__thiscall* fnHitboxToWorldTransform)(C_CSPlayerPawn*, CHitboxSet*, Transform_t*, int);
-	static auto HitboxToWorldTransform = (fnHitboxToWorldTransform)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 18 55 56 57 41 56 41 57 48 83 EC 20 41"));
+	static auto HitboxToWorldTransform = (fnHitboxToWorldTransform)(Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 56 57 41 54 41 56 41 57 48 83 EC ? 41 8B F1"));
 	if (HitboxToWorldTransform)
 		return HitboxToWorldTransform(this, hitboxSet, transform, 1024);
 
