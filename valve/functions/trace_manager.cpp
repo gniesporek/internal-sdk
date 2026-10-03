@@ -117,7 +117,7 @@ bool PenetrationSystem::SimulateFireBullet(Vector3D vecStartPos, Vector3D vecEnd
 	if (!pWeaponInfo)
 		return false;
 
-	Vector3D direction = (vecEndPos - vecStartPos).Normalized() * pWeaponInfo->GetRange();
+	Vector3D direction = (vecEndPos - vecStartPos).Normalize() * pWeaponInfo->GetRange();
 
 	CTraceFilter traceFilter{ Globals::LocalPlayerPawn, 0x1C300B, 3, 15 }; 
 

@@ -63,6 +63,16 @@ public:
 	bool IsZero() const {
 		return x == 0 && y == 0 && z == 0;
 	}
+	
+	float Length() const {
+		return sqrtf(x * x + y * y + z * z);
+	}
+
+	Vector3D Normalize() const {
+		float len = Length();
+		if (len == 0) return Vector3D(0, 0, 0);
+		return Vector3D(x / len, y / len, z / len);
+	}
 };
 
 class Vector4D {
