@@ -145,6 +145,9 @@
     <ClCompile Include="valve\functions\hitbox_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="valve\functions\trace_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -619,6 +622,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="valve\functions\hitbox_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\functions\trace_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
