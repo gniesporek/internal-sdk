@@ -48,17 +48,22 @@ void Assistance::Run(CUserCmd* pCommand)
 	
 		if (pPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!mpTeammatesAreEnemies || !mpTeammatesAreEnemies->value.i1))
 			continue;
-		PlayerInformation::pTargetEntity = pPawn;
 
-		Vector3D hitboxPosition = HitboxSystem::GetHitboxPosition(pPawn, HITBOX_HEAD);
+		PlayerInformation::pTargetEntity = pPawn;
+	}
+
+
+	if (PlayerInformation::pTargetEntity)
+	{
+		Vector3D hitboxPosition = HitboxSystem::GetHitboxPosition(PlayerInformation::pTargetEntity, HITBOX_HEAD);
 		Vector3D localEyePosition = Globals::LocalPlayerPawn->GetEyePosition();
 		Vector3D angle = Math::CalculateAngle(localEyePosition, hitboxPosition);
 
 
-		if(!Globals::ActiveWeapon)
-			continue;
+		if (!Globals::ActiveWeapon)
+			return;
 
-		if (PenetrationSystem::SimulateFireBullet(localEyePosition, hitboxPosition, pPawn, Globals::ActiveWeapon, penData)) 
+		if (PenetrationSystem::SimulateFireBullet(localEyePosition, hitboxPosition, PlayerInformation::pTargetEntity, Globals::ActiveWeapon, penData))
 		{
 			if (penData.Damage > 0)
 			{
@@ -66,6 +71,7 @@ void Assistance::Run(CUserCmd* pCommand)
 
 			}
 		}
+
 
 	}
 
