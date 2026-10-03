@@ -88,3 +88,20 @@ void Math::VectorTransform(const Vector3D& in, const Matrix3x4_t& matrix, Vector
     out.y = in.x * matrix.data[1][0] + in.y * matrix.data[1][1] + in.z * matrix.data[1][2] + matrix.data[1][3];
     out.z = in.x * matrix.data[2][0] + in.y * matrix.data[2][1] + in.z * matrix.data[2][2] + matrix.data[2][3];
 }
+
+Vector3D Math::CalculateAngle(const Vector3D& source, const Vector3D& destination)
+{
+    Vector3D qAngles;
+
+    Vector3D delta = destination - source;
+
+    double hyp = sqrtf(delta.x * delta.x + delta.y * delta.y);
+
+    qAngles.x = (float)(atan2f(-delta.z, hyp)) * 57.295779513082f;
+    qAngles.y = (float)(atan2f(delta.y, delta.x)) * 57.295779513082f;
+    qAngles.z = 0.f;
+
+    qAngles.Normalize();
+
+    return qAngles;
+}

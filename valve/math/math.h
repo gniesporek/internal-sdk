@@ -18,4 +18,5 @@ public:
 	static bool WorldToScreen(const Vector3D& worldPos, Vector2D& screenPos);
 	static bool CalculateBoundingBox(C_BaseEntity* pEntity, BoundingBox& bbox, bool compute);
 	static void VectorTransform(const Vector3D& in, const Matrix3x4_t& matrix, Vector3D& out);
+	static Vector3D CalculateAngle(const Vector3D& source, const Vector3D& destination);
 };
