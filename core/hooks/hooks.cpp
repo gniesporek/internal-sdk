@@ -6,6 +6,8 @@ bool HooksManager::Setup()
         MESSAGE_ERROR("failed to initialize minhook");
         return false;
     }
+    
+    Interfaces::pConVar->Setup();
 
     CreateHook("PresentScene", "gameoverlayRenderer64.dll", "48 89 5C 24 ? 48 89 6C 24 ? 56 57 41 54 41 56 41 57 48 83 EC ? 41 8B F0", false, &PresentScene::oPresentScene, PresentScene::hkPresentScene);
     CreateHook("CreateSwapChain", "gameoverlayRenderer64.dll", "40 53 55 56 57 48 83 EC ? 48 8B F9 49 8B F1 48 8D 0D ? ? ? ? 49 8B D8 48 8B EA E8 ? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8D 0D ? ? ? ? E8 ? ? ? ? 48 8B 05 ? ? ? ? 4C 8B CE 4C 8B C3 48 8B D5 48 8B CF FF D0 8B D8 85 C0 78 ? 48 85 F6 74 ? 48 83 3E ? 74 ? 48 8B D5 48 8B CE E8 ? ? ? ? 8B C3 48 83 C4 ? 5F 5E 5D 5B C3 CC CC CC CC CC CC CC CC CC CC CC CC CC CC CC 48 83 EC", false, &CreateSwapChain::oCreateSwapChain, CreateSwapChain::hkCreateSwapChain);

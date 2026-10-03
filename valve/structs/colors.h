@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 #include <d3dx9.h>
 

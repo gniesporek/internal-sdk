@@ -5,7 +5,7 @@ bool Interfaces::Setup()
 	pSchemaSystem = (ISchemaSystem*)GetInterface("schemasystem.dll", "SchemaSystem_001");
 	pEngineClient = (CEngineClient*)GetInterface("engine2.dll", "Source2EngineToClient001");
 	pInputSystem = (CInputSystem*)GetInterface("inputsystem.dll", "InputSystemVersion001");
-
+	pConVar = (IEngineCvar*)GetInterface("tier0.dll", "VEngineCvar007");
 	return true;
 }
 
