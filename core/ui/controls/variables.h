@@ -7,6 +7,8 @@ public:
 	public:
 		static inline bool Enable = false;
 		static inline bool RenderTarget = false;
+		static inline bool SilentAim = false;
+		static inline bool AutoShoot = false;
 	};
 
 	class Visuals {
