@@ -151,6 +151,9 @@
     <ClCompile Include="valve\convars\convars.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="core\hooks\client\validate_user_command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -631,6 +634,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="valve\convars\convars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="core\hooks\client\validate_user_command.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
