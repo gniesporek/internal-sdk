@@ -67,6 +67,10 @@ public:
 	float Length() const {
 		return sqrtf(x * x + y * y + z * z);
 	}
+	
+	float DistanceTo(const Vector3D& v) const {
+		return (*this - v).Length();
+	}
 
 	Vector3D Normalize() const {
 		float len = Length();
