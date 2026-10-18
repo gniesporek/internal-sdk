@@ -20,6 +20,9 @@ void Visuals::Overlay(std::vector<Cache::Entities> entities)
 		if(!pPlayerPawn->IsEntityAlive())
 			continue;
 
+		if (pPlayerPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!Interfaces::pConVar->GetConVar("mp_teammates_are_enemies") || !Interfaces::pConVar->GetConVar("mp_teammates_are_enemies")->value.i1))
+			continue;
+
 		if (!Math::CalculateBoundingBox(pPlayerPawn, bbox, false))
 			continue;
 
