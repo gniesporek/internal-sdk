@@ -237,7 +237,7 @@ public:
 	CCSGOUserCmd CSGOUserCmd;
 	CInButtonState ButtonState;
 
-	void SetInputHistoryAngle(Vector3D* vecAngle);
+	void SetInputHistory(Vector3D* vecAngle, CCSPlayerController* pController, C_CSPlayerPawn* pPawn);
 	void SetInputHistory(int renderTick, C_CSPlayerPawn* pLocal, CCSPlayerController* pController);
 
 private:

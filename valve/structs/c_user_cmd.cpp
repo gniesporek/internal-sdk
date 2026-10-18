@@ -1,5 +1,9 @@
 #include "c_user_cmd.h"
 
+#include "../../core/ui/controls/variables.h"
+
+#include "../globals.h"
+
 //  initialize usercmd
 CUserCmd* CUserCmd::GetUserCmd(CCSPlayerController* pController)
 {
@@ -54,7 +58,7 @@ CUserCmd** CUserCmdArray::GetArrayCommands()
 	return GetArrayUserCmd;
 }
 
-void CUserCmd::SetInputHistoryAngle(Vector3D* vecAngle)
+void CUserCmd::SetInputHistory(Vector3D* vecAngle,CCSPlayerController* pController,C_CSPlayerPawn* pPawn)
 {
 	RepeatedPtrField_t<CSGOInputHistoryEntryPB>& inputHistory = this->CSGOUserCmd.InputHistoryEntry;
 
@@ -70,8 +74,29 @@ void CUserCmd::SetInputHistoryAngle(Vector3D* vecAngle)
 
 		entry->SetBits(INPUT_HISTORY_BITS_VIEWANGLES);
 		entry->ViewAngles->Angle = *vecAngle;
-	}
+		entry->SetBits(INPUT_HISTORY_BITS_PLAYER_TICK_COUNT);
+		entry->PlayerTickCount = Globals::LocalPlayerController->GetTickBase(); 
+		entry->SetBits(INPUT_HISTORY_BITS_PLAYER_TICK_FRACTION);
+		entry->PlayerTickFraction = Variables::Assistance::AutoShoot ? std::nextafterf(1.0f, 0.0f) : 0.f;
 
+
+		entry->SetBits(INPUT_HISTORY_BITS_RENDER_TICK_COUNT);
+		entry->RenderTickCount = TIME_TO_TICKS(pPawn->GetSimulationTime()) + 1;
+		entry->SetBits(INPUT_HISTORY_BITS_RENDER_TICK_FRACTION);
+		entry->RenderTickFraction = 0.f;
+
+		// for testing purposes, we can zero out the interpolation info to see if it affects the shoot position calculation
+	
+		//if (entry->PlayerInterp) {
+		//	entry->PlayerInterp->Zero();
+		//}
+		//if (entry->SvInterp0) {
+		//	entry->SvInterp0->Zero();
+		//}
+		//if (entry->SvInterp1) {
+		//	entry->SvInterp1->Zero();
+		//}
+	}
 }
 
 void CUserCmd::SetInputHistory(int renderTick, C_CSPlayerPawn* pLocal, CCSPlayerController* pController)
