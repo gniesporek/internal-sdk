@@ -14,12 +14,12 @@ bool HooksManager::Setup()
     CreateHook("ResizeBuffers", "gameoverlayRenderer64.dll", "40 53 55 56 57 41 54 41 56 41 57 48 83 EC ? 44 8B E2", false, &ResizeBuffers::oResizeBuffers, ResizeBuffers::hkResizeBuffers);
     CreateHook("OnClientOutput", "engine2.dll", "4C 8B DC 49 89 5B ? 49 89 6B ? 49 89 73 ? 57 41 56 41 57 48 83 EC", false, &OnClientOutput::oOnClientOutput, OnClientOutput::hkOnClientOutput);
     CreateHook("RelativeMouseMode", "inputsystem.dll", "48 89 6C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 41 56 48 83 EC ? 0F B6 F2", false, &RelativeMouseMode::oSetRelativeMouseMode, RelativeMouseMode::hkSetRelativeMouseMode);
-    CreateHook("MouseInput", "client.dll", "40 53 48 83 EC ? 80 B9 ? ? ? ? ? 48 8B D9 75 ? 48 8B 0D ? ? ? ? 48 8B 01", false, &MouseInput::oMouseInput, MouseInput::hkMouseInput);
+    CreateHook("MouseInput", "client.dll", "40 53 48 83 EC 20 80 B9 BC 0B 00 00 00 48 8B D9 0F 85 81 00 00 00 48 8B 0D", false, &MouseInput::oMouseInput, MouseInput::hkMouseInput);
     CreateHook("AddEntity", "client.dll", "48 89 74 24 ? 57 48 83 EC ? 41 B9 ? ? ? ? 41 8B C0 41 23 C1 48 8B F2 41 83 F8 ? 48 8B F9 44 0F 45 C8 41 81 F9 ? ? ? ? 73 ? FF 81", false, &AddEntity::oAddEntity, AddEntity::hkAddEntity);
     CreateHook("RemoveEntity", "client.dll", "48 89 74 24 ? 57 48 83 EC ? 41 B9 ? ? ? ? 41 8B C0 41 23 C1 48 8B F2 41 83 F8 ? 48 8B F9 44 0F 45 C8 41 81 F9 ? ? ? ? 73 ? FF 89", false, &RemoveEntity::oRemoveEntity, RemoveEntity::hkRemoveEntity);
     CreateHook("CreateMove", "client.dll", "85 D2 0F 85 ? ? ? ? 48 8B C4 44 88 40", false, &CreateMove::oCreateMove, CreateMove::hkCreateMove);
 	CreateHook("NetworkGameClientWrapper", "engine2.dll", "40 53 48 83 EC ? 48 8B D9 48 8B 0D ? ? ? ? 48 8B 01 FF 50", false, &NetworkGameClientWrapper::oNetworkGameClientWrapper, NetworkGameClientWrapper::hkNetworkGameClientWrapper);
-
+    
     return true;
 }
 
