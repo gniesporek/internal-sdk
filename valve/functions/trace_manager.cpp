@@ -104,7 +104,7 @@ void PenetrationSystem::ScaleDamage(const int HitGroup, C_CSPlayerPawn* pPawn, c
 
 bool PenetrationSystem::SimulateFireBullet(Vector3D vecStartPos, Vector3D vecEndPos, C_CSPlayerPawn* pTarget, C_CSWeapon* pCurrentWeapon, PenetrationData& penetrationData)
 {
-	if (!pTarget)
+	if (!pTarget || !pCurrentWeapon)
 		return false;
 
 	using fn = void(__thiscall*)(void*);
