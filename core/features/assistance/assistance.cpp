@@ -20,12 +20,6 @@ void Assistance::Run(CUserCmd* pCommand)
 
 	PenetrationData penData = {};
 
-
-	static CConVar* mpTeammatesAreEnemies = nullptr;
-
-	if (!mpTeammatesAreEnemies)
-		mpTeammatesAreEnemies = Interfaces::pConVar->GetConVar("mp_teammates_are_enemies");
-
 	// find target etc
 
 	for (auto& entity : cachedEntities)
@@ -37,6 +31,9 @@ void Assistance::Run(CUserCmd* pCommand)
 			continue;
 
 		C_CSPlayerPawn* pPawn = (C_CSPlayerPawn*)(EntitySystem::GetEntityByHandle(entity.pPlayerController->GetPawnHandle()));
+		if (!pPawn)
+			continue;
+
 		if (!pPawn->IsEntityPlayer())
 			continue;
 
@@ -46,7 +43,7 @@ void Assistance::Run(CUserCmd* pCommand)
 		if (pPawn == Globals::LocalPlayerPawn)
 			continue;
 	
-		if (pPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!mpTeammatesAreEnemies || !mpTeammatesAreEnemies->value.i1))
+		if (pPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!Interfaces::pConVar->GetConVar("mp_teammates_are_enemies") || !Interfaces::pConVar->GetConVar("mp_teammates_are_enemies")->value.i1))
 			continue;
 
 		PlayerInformation::pTargetEntity = pPawn;
@@ -56,7 +53,7 @@ void Assistance::Run(CUserCmd* pCommand)
 	if (PlayerInformation::pTargetEntity)
 	{
 		Vector3D hitboxPosition = HitboxSystem::GetHitboxPosition(PlayerInformation::pTargetEntity, HITBOX_HEAD);
-		Vector3D localEyePosition = Globals::LocalPlayerPawn->GetEyePosition();
+		Vector3D localEyePosition = Globals::PredictedEyePosition;
 		Vector3D angle = Math::CalculateAngle(localEyePosition, hitboxPosition);
 
 
@@ -65,14 +62,28 @@ void Assistance::Run(CUserCmd* pCommand)
 
 		if (PenetrationSystem::SimulateFireBullet(localEyePosition, hitboxPosition, PlayerInformation::pTargetEntity, Globals::ActiveWeapon, penData))
 		{
-			if (penData.Damage > 0)
+			if (penData.Damage >= 100) // sanity check 
 			{
-				Interfaces::pCSGOInput->SetViewAngles(angle);
+			
+				if (!Variables::Assistance::SilentAim)
+				{
+					Interfaces::pCSGOInput->SetViewAngles(angle);
+				}
 
+				pCommand->SetInputHistory(&angle, Globals::LocalPlayerController, PlayerInformation::pTargetEntity);
+
+				if (Variables::Assistance::AutoShoot) {
+				
+					if (Globals::ActiveWeapon->CanFire())
+					{
+						pCommand->CSGOUserCmd.Attack1StartHistoryIndex = 0;
+						pCommand->CSGOUserCmd.SetBits(CSGOUSERCMD_BITS_ATTACK1_START_HISTORY_INDEX);
+						pCommand->ButtonState.Value |= IN_ATTACK;
+					
+					}
+				}
 			}
 		}
-
-
 	}
 
 }
