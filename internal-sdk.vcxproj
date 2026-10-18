@@ -113,6 +113,7 @@
     <ClCompile Include="core\hooks\client\create_move.cpp" />
     <ClCompile Include="core\hooks\client\mouse_input.cpp" />
     <ClCompile Include="core\hooks\client\remove_entity.cpp" />
+    <ClCompile Include="core\hooks\client\validate_user_command.cpp" />
     <ClCompile Include="core\hooks\directx11\directx11.cpp" />
     <ClCompile Include="core\hooks\engine2\engine2.cpp" />
     <ClCompile Include="core\hooks\hooks.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="core\hooks\client\create_move.h" />
     <ClInclude Include="core\hooks\client\mouse_input.h" />
     <ClInclude Include="core\hooks\client\remove_entity.h" />
+    <ClInclude Include="core\hooks\client\validate_user_command.h" />
     <ClInclude Include="core\hooks\directx11\directx11.h" />
     <ClInclude Include="core\hooks\engine2\engine2.h" />
     <ClInclude Include="core\hooks\hooks.h" />
