@@ -16,6 +16,7 @@
 #include "client/add_entity.h"
 #include "client/remove_entity.h"
 #include "client/create_move.h"
+#include "client/validate_user_command.h"
 
 #include "../features/features.h"
 
