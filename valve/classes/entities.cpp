@@ -2,6 +2,8 @@
 
 #include "../functions/trace_manager.h"
 
+#include "../../core/ui/controls/variables.h"
+
 bool C_BaseEntity::IsEntityPlayerController()
 {
     if (FNV1A::Hash(this->GetSchemaClassBinding()->szName) == FNV1A::Hash("CCSPlayerController"))
@@ -37,6 +39,27 @@ bool C_BaseEntity::IsEntityAlive()
 Vector3D C_BaseEntity::GetEyePosition()
 {
     return this->GetViewOffset() + this->GetSceneNode()->GetAbsOrigin();
+}
+
+Vector3D C_BaseEntity::GetShootPosition()
+{
+    struct ShootInfo {
+        int tick;
+        float fraction;
+    };
+
+    ShootInfo shootInfo{};
+	shootInfo.tick = Globals::LocalPlayerController->GetTickBase();
+	shootInfo.fraction = Variables::Assistance::AutoShoot ? std::nextafterf(1.0f, 0.0f) : 0.f;
+     
+    typedef void* (__fastcall* fnCalcShootPos)(Vector3D*, C_BaseEntity*, ShootInfo*, void*, void*);
+    static auto CalculateShootPosition = (fnCalcShootPos)Utils::Memory::SignatureScan("client.dll", "48 89 5C 24 ? 48 89 6C 24 ? 56 57 41 56 48 83 EC ? 44 8B 92");
+
+
+	Vector3D shootPos = Vector3D(0, 0, 0);
+	CalculateShootPosition(&shootPos, this, &shootInfo, nullptr, nullptr);
+
+	return shootPos; 
 }
 
 CSchemaClassBinding* CEntityInstance::GetSchemaClassBinding()

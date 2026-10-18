@@ -88,6 +88,7 @@ public:
     bool ComputeHitboxSurroundingBox(Vector3D* mins, Vector3D* maxs);
     bool IsEntityAlive();
     Vector3D GetEyePosition();
+	Vector3D GetShootPosition();
     SCHEMA("C_BaseModelEntity","m_vecViewOffset",GetViewOffset,Vector3D)
     SCHEMA("C_BaseEntity","m_iHealth", GetHealth,int)
 	SCHEMA("C_BaseEntity", "m_iMaxHealth", GetMaxHealth, int)
