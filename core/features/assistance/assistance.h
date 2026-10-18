@@ -11,6 +11,7 @@ private:
 	struct PlayerInformation {
 	public:
 		static inline C_CSPlayerPawn* pTargetEntity = nullptr;
+		static inline Vector3D TargetHitboxPosition = Vector3D(0, 0, 0);
 	};
 
 };

@@ -12,6 +12,9 @@ void Assistance::Run(CUserCmd* pCommand)
 	if (!Variables::Assistance::Enable)
 		return;
 
+	if (!Globals::LocalPlayerPawn->IsEntityAlive())
+		return;
+
 	PlayerInformation::pTargetEntity = nullptr;
 
 	auto cachedEntities = Cache::GetEntitiesFromCache();
@@ -19,6 +22,9 @@ void Assistance::Run(CUserCmd* pCommand)
 		return;
 
 	PenetrationData penData = {};
+
+	float best = FLT_MAX;
+	Vector2D center(ImGui::GetIO().DisplaySize.x / 2, ImGui::GetIO().DisplaySize.y / 2);
 
 	// find target etc
 
@@ -46,21 +52,32 @@ void Assistance::Run(CUserCmd* pCommand)
 		if (pPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!Interfaces::pConVar->GetConVar("mp_teammates_are_enemies") || !Interfaces::pConVar->GetConVar("mp_teammates_are_enemies")->value.i1))
 			continue;
 
-		PlayerInformation::pTargetEntity = pPawn;
-	}
+		Vector3D hitboxPosition = HitboxSystem::GetHitboxPosition(pPawn, HITBOX_HEAD);
 
+		Vector2D screen;
+		if (!Math::WorldToScreen(hitboxPosition, screen))
+			continue;
+
+		float distanceToCrosshair = screen.DistanceTo(center);
+
+		if (distanceToCrosshair < best)
+		{
+			best = distanceToCrosshair;
+
+			PlayerInformation::pTargetEntity = pPawn;
+			PlayerInformation::TargetHitboxPosition = hitboxPosition;
+		}
+	}
 
 	if (PlayerInformation::pTargetEntity)
 	{
-		Vector3D hitboxPosition = HitboxSystem::GetHitboxPosition(PlayerInformation::pTargetEntity, HITBOX_HEAD);
 		Vector3D localEyePosition = Globals::PredictedEyePosition;
-		Vector3D angle = Math::CalculateAngle(localEyePosition, hitboxPosition);
-
+		Vector3D angle = Math::CalculateAngle(localEyePosition, PlayerInformation::TargetHitboxPosition);
 
 		if (!Globals::ActiveWeapon)
 			return;
 
-		if (PenetrationSystem::SimulateFireBullet(localEyePosition, hitboxPosition, PlayerInformation::pTargetEntity, Globals::ActiveWeapon, penData))
+		if (PenetrationSystem::SimulateFireBullet(localEyePosition, PlayerInformation::TargetHitboxPosition, PlayerInformation::pTargetEntity, Globals::ActiveWeapon, penData))
 		{
 			if (penData.Damage >= 100) // sanity check 
 			{
