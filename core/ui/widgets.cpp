@@ -26,6 +26,8 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
 
         Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 59), "enable", Variables::Assistance::Enable);
         Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 74), "render target", Variables::Assistance::RenderTarget);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 89), "silent aim", Variables::Assistance::SilentAim);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 104), "auto shoot", Variables::Assistance::AutoShoot);
 
         break;
 
