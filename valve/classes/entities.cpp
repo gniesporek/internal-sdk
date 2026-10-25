@@ -62,6 +62,16 @@ Vector3D C_BaseEntity::GetShootPosition()
 	return shootPos; 
 }
 
+Vector3D C_BaseEntity::GetPunchAngle()
+{
+    // https://imgur.com/a/15Ork3y
+	Vector3D punchAngle = Vector3D(0, 0, 0);
+	typedef __int64(__fastcall* fnGetPunchAngle)(C_BaseEntity*, Vector3D*, bool);
+    static auto GetPunchAngleFn = (fnGetPunchAngle)(Utils::Memory::SignatureScan("client.dll", "40 53 48 83 EC ? 48 8B 89 ? ? ? ? 48 8B DA E8"));
+    GetPunchAngleFn(this, &punchAngle, true);
+    return punchAngle;
+}
+
 CSchemaClassBinding* CEntityInstance::GetSchemaClassBinding()
 {
     /*

@@ -60,6 +60,20 @@ public:
 		return Vector3D(x / scalar, y / scalar, z / scalar);
 	}
 
+	Vector3D& operator-=(const Vector3D& v) {
+		x -= v.x;
+		y -= v.y;
+		z -= v.z;
+		return *this;
+	}
+
+	Vector3D& operator+=(const Vector3D& v) {
+		x += v.x;
+		y += v.y;
+		z += v.z;
+		return *this;
+	}
+
 	bool IsZero() const {
 		return x == 0 && y == 0 && z == 0;
 	}

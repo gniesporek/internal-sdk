@@ -74,6 +74,10 @@ void Assistance::Run(CUserCmd* pCommand)
 		Vector3D localEyePosition = Globals::PredictedEyePosition;
 		Vector3D angle = Math::CalculateAngle(localEyePosition, PlayerInformation::TargetHitboxPosition);
 
+		angle -= Globals::LocalPlayerPawn->GetPunchAngle();
+
+		angle.Normalize();
+
 		if (!Globals::ActiveWeapon)
 			return;
 
@@ -93,7 +97,7 @@ void Assistance::Run(CUserCmd* pCommand)
 				
 					if (Globals::ActiveWeapon->CanFire())
 					{
-						pCommand->CSGOUserCmd.Attack1StartHistoryIndex = 0;
+						pCommand->CSGOUserCmd.Attack1StartHistoryIndex = pCommand->CSGOUserCmd.InputHistoryEntry.nCurrentSize - 1;
 						pCommand->CSGOUserCmd.SetBits(CSGOUSERCMD_BITS_ATTACK1_START_HISTORY_INDEX);
 						pCommand->ButtonState.Value |= IN_ATTACK;
 					

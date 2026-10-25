@@ -89,6 +89,7 @@ public:
     bool IsEntityAlive();
     Vector3D GetEyePosition();
 	Vector3D GetShootPosition();
+    Vector3D GetPunchAngle();
     SCHEMA("C_BaseModelEntity","m_vecViewOffset",GetViewOffset,Vector3D)
     SCHEMA("C_BaseEntity","m_iHealth", GetHealth,int)
 	SCHEMA("C_BaseEntity", "m_iMaxHealth", GetMaxHealth, int)
