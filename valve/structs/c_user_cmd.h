@@ -238,8 +238,7 @@ public:
 	CInButtonState ButtonState;
 
 	void SetInputHistory(Vector3D* vecAngle, CCSPlayerController* pController, C_CSPlayerPawn* pPawn);
-	void SetInputHistory(int renderTick, C_CSPlayerPawn* pLocal, CCSPlayerController* pController);
-
+	void CorrectButtons();
 private:
 	static CUserCmd* Get(CCSPlayerController* pController, uint32_t nCmd);
 	static void GetPlayerTick(CCSPlayerController* pController, int32_t* nCmd);

@@ -83,7 +83,7 @@ void Assistance::Run(CUserCmd* pCommand)
 
 		if (PenetrationSystem::SimulateFireBullet(localEyePosition, PlayerInformation::TargetHitboxPosition, PlayerInformation::pTargetEntity, Globals::ActiveWeapon, penData))
 		{
-			if (penData.Damage >= 100) // sanity check 
+			if (penData.Damage >= 101) // sanity check 
 			{
 			
 				if (!Variables::Assistance::SilentAim)

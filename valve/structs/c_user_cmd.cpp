@@ -99,34 +99,18 @@ void CUserCmd::SetInputHistory(Vector3D* vecAngle,CCSPlayerController* pControll
 	}
 }
 
-void CUserCmd::SetInputHistory(int renderTick, C_CSPlayerPawn* pLocal, CCSPlayerController* pController)
+void CUserCmd::CorrectButtons()
 {
-	RepeatedPtrField_t<CSGOInputHistoryEntryPB>& inputHistory = this->CSGOUserCmd.InputHistoryEntry;
-	int size = inputHistory.nCurrentSize;
-	int totalSize = inputHistory.nTotalSize;
+	this->ButtonState.Value &= ~(IN_FORWARD | IN_BACK | IN_MOVELEFT | IN_MOVERIGHT);
 
-	float interpTime = pLocal->GetInterpolationTiming(0, 1);
-	TimeStamp interpolationTime(interpTime);
-
-	for (int i = 0; i < size; i++)
-	{
-		CSGOInputHistoryEntryPB* entry = nullptr;
-
-		if (i < inputHistory.pRep->nAllocatedSize)
-			entry = inputHistory.pRep->tElements[i];
-
-		if (!entry || !entry->ViewAngles)
-			continue;
-		entry->SetBits(INPUT_HISTORY_BITS_PLAYER_TICK_COUNT);
-		entry->PlayerTickCount = pController->GetTickBase();
-		entry->SetBits(INPUT_HISTORY_BITS_PLAYER_TICK_FRACTION);
-		entry->PlayerTickFraction = 0.f;
-
-		entry->SetBits(INPUT_HISTORY_BITS_RENDER_TICK_COUNT);
-		entry->RenderTickCount = renderTick + interpolationTime.tick;
-		entry->SetBits(INPUT_HISTORY_BITS_RENDER_TICK_FRACTION);
-		entry->RenderTickFraction = 0.f;
-	}
+	if (this->CSGOUserCmd.BaseUserCmd->ForwardMove > 0.f)
+		this->ButtonState.Value |= IN_FORWARD;
+	else if (this->CSGOUserCmd.BaseUserCmd->ForwardMove < 0.f)
+		this->ButtonState.Value |= IN_BACK;
+	if (this->CSGOUserCmd.BaseUserCmd->SideMove > 0.f)
+		this->ButtonState.Value |= IN_MOVERIGHT;
+	else if (this->CSGOUserCmd.BaseUserCmd->SideMove < 0.f)
+		this->ButtonState.Value |= IN_MOVELEFT;
 }
 
 CSubtickMoveStep* CBaseUserCmdPB::CreateSubTickMoveStep()
