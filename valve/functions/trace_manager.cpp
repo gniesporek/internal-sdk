@@ -52,7 +52,7 @@ C_BaseEntity* TraceManager::TraceLine(Vector3D startPosition, Vector3D endPositi
 bool TraceManager::TraceShape(Vector3D startPosition, Vector3D endPosition, CRay* pRay, CTraceFilter* pTraceFilter, CGameTrace* pTrace)
 {
 	typedef bool(__fastcall* oTraceShape)(void*, CRay*, Vector3D, Vector3D, CTraceFilter*, CGameTrace*);
-	static oTraceShape TraceShape = (oTraceShape)(Utils::Memory::SignatureScan("client.dll", "48 89 54 24 ? 48 89 4C 24 ? 55 53 56 57 41 56 41 57 48 8D AC 24 ? ? ? ? B8"));
+	static oTraceShape TraceShape = (oTraceShape)(Utils::Memory::SignatureScan("client.dll", "48 89 54 24 ? 48 89 4C 24 ? 55 53 56 57 41 54 41 56 41 57 48 8D AC 24 ? ? ? ? B8"));
 	static void* CVPhys2World = *(void***)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "48 8B 0D ? ? ? ? 48 8D 94 24 ? ? ? ? 4C 8B CF"), 3, 7));
 
 	if (!CVPhys2World)
