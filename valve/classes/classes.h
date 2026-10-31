@@ -6,5 +6,7 @@
 
 #include "../math/math.h"
 
+#include "../structs/structs.h"
+
 #include "entities.h"
 #include "players.h"

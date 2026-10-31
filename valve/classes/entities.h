@@ -25,6 +25,24 @@ private:
     uint32_t nIndex;
 };
 
+class CCStrike15ItemDefinition
+{
+public:
+    PAD_OFFSET(const char*, GetSFUIItemName, 0x70);
+    PAD_OFFSET(const char*, GetName, 0x260);
+};
+
+class C_EconItemView {
+public:
+    CCStrike15ItemDefinition* GetEconItemSystem();
+	SCHEMA("C_EconItemView", "m_iItemDefinitionIndex", GetDefinitionIndex, UINT16)
+};
+
+class C_AttributeContainer {
+public:
+	SCHEMA("C_AttributeContainer", "m_Item", GetEconItemView, C_EconItemView)
+};
+
 class CPlayer_WeaponServices {
 public:
     SCHEMA("CPlayer_WeaponServices","m_hActiveWeapon",GetWeaponHandle,C_BaseHandle)
@@ -69,7 +87,26 @@ public:
     SCHEMA("CCollisionProperty","m_vecMaxs",GetMaxs,Vector3D)
 };
 
-class CGameSceneNode {
+class alignas(16) CBoneData {
+public:
+    Vector3D position;
+    float scale;
+    Vector3D rotation;
+};
+
+class CModelState {
+public:
+    PAD(0x80);
+    CBoneData* GetBoneData;
+};
+
+class CSkeletonInstance
+{
+public:
+    SCHEMA("CSkeletonInstance","m_modelState",GetModelState,CModelState)
+};
+
+class CGameSceneNode : public CSkeletonInstance {
 public:
     SCHEMA("CGameSceneNode", "m_vecAbsOrigin", GetAbsOrigin, Vector3D)
 };
@@ -97,4 +134,6 @@ public:
     SCHEMA("C_BaseEntity","m_pCollision",GetCollisionProperty,CCollisionProperty*)
     SCHEMA("C_BaseEntity","m_iTeamNum",GetTeamNum,int)
 	SCHEMA("C_BaseEntity", "m_flSimulationTime", GetSimulationTime, float)
+    SCHEMA("C_EconEntity","m_AttributeManager",GetAttributeManager,C_AttributeContainer)
+    SCHEMA("C_BaseEntity","m_fFlags",GetFlags, int32_t)
 };

@@ -24,4 +24,5 @@ public:
 	SCHEMA("C_CSPlayerPawn","m_ArmorValue",GetArmor,int)
 	SCHEMA("C_BasePlayerPawn", "m_pMovementServices", GetMovementServices, CPlayerMovementServices*)
 	SCHEMA("C_BasePlayerPawn","m_pWeaponServices",GetWeaponServices,CPlayer_WeaponServices*)
+	SCHEMA("C_CSPlayerPawn", "m_iShotsFired", GetShotsFired, int)
 };

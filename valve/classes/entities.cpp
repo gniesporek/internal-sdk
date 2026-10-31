@@ -152,3 +152,14 @@ bool CPlayer_ItemServices::HasPlayerArmor(int hitGroup)
         return false;
     }
 }
+
+CCStrike15ItemDefinition* C_EconItemView::GetEconItemSystem()
+{
+    typedef CCStrike15ItemDefinition* (__fastcall* fnGetEconItemSystem)(C_EconItemView* item);
+    static auto pGetEconItemSystem = (fnGetEconItemSystem)(Utils::Memory::RelativeAddress(Utils::Memory::SignatureScan("client.dll", "E8 ? ? ? ? 48 8B 88 ? ? ? ? 48 85 C9 74 ? 4C 8B 01"), 1, 5));
+    
+    if (!pGetEconItemSystem)
+        return nullptr;
+
+    return pGetEconItemSystem(this);
+}
