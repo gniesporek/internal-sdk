@@ -10,7 +10,7 @@ void __fastcall OnClientOutput::hkOnClientOutput(__int64 a1, __int64 a2)
 
 		RenderStackSystem::Text::Shadow(ImGui::GetFont(), Vector2D(10, 10), "welcome", Colors::White(), Colors::Black(180), 1.f, false);
 
-		Features::Drawing::Paint();
+		Visuals::Paint();
 
 		RenderStackSystem::SwapDrawData();
 	}
