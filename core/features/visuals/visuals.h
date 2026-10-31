@@ -10,9 +10,6 @@ private:
 	static void WeaponText(C_CSPlayerPawn* pPawn, BoundingBox bbox);
 	static void Skeleton(C_CSPlayerPawn* pPawn);
 
-	static inline BoundingBox bbox;
-	static inline std::unordered_map<C_CSPlayerPawn*, float> previousHealth;
-
 	// skeleton connection
     static inline const int bonePairs[][2] = {
         { BONE_HEAD_0, BONE_NECK_0 },

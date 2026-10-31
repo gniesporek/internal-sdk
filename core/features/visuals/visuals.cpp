@@ -13,6 +13,8 @@ void Visuals::Paint()
 	if (cachedEntities.empty())
 		return;
 
+	BoundingBox bbox{};
+
 	for (auto& player : cachedEntities)
 	{
 		if (!player.pPlayerController)
