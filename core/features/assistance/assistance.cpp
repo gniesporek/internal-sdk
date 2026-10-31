@@ -5,7 +5,6 @@
 
 void Assistance::Run(CUserCmd* pCommand)
 {
-
 	if (!Interfaces::pEngineClient->IsInGame() || !Interfaces::pEngineClient->IsConnected())
 		return;
 
@@ -48,7 +47,7 @@ void Assistance::Run(CUserCmd* pCommand)
 
 		if (pPawn == Globals::LocalPlayerPawn)
 			continue;
-	
+
 		if (pPawn->GetTeamNum() == Globals::LocalPlayerPawn->GetTeamNum() && (!Interfaces::pConVar->GetConVar("mp_teammates_are_enemies") || !Interfaces::pConVar->GetConVar("mp_teammates_are_enemies")->value.i1))
 			continue;
 
@@ -85,7 +84,7 @@ void Assistance::Run(CUserCmd* pCommand)
 		{
 			if (penData.Damage >= 101) // sanity check 
 			{
-			
+
 				if (!Variables::Assistance::SilentAim)
 				{
 					Interfaces::pCSGOInput->SetViewAngles(angle);
@@ -94,13 +93,13 @@ void Assistance::Run(CUserCmd* pCommand)
 				pCommand->SetInputHistory(&angle, Globals::LocalPlayerController, PlayerInformation::pTargetEntity);
 
 				if (Variables::Assistance::AutoShoot) {
-				
+
 					if (Globals::ActiveWeapon->CanFire())
 					{
 						pCommand->CSGOUserCmd.Attack1StartHistoryIndex = pCommand->CSGOUserCmd.InputHistoryEntry.nCurrentSize - 1;
 						pCommand->CSGOUserCmd.SetBits(CSGOUSERCMD_BITS_ATTACK1_START_HISTORY_INDEX);
 						pCommand->ButtonState.Value |= IN_ATTACK;
-					
+
 					}
 				}
 			}
