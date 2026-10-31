@@ -38,6 +38,8 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
 		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 74), "bounding box", Variables::Visuals::BoundingBox);
 		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 89), "name", Variables::Visuals::Name);
 		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 104), "health bar", Variables::Visuals::Health);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 119), "weapon text", Variables::Visuals::WeaponText);
+		Controls::CheckBox::Draw(Vector2D(position.x + 176, position.y + 134), "skeleton", Variables::Visuals::Skeleton);
 
         break;
 
@@ -45,7 +47,7 @@ void Widgets::DrawForm(Vector2D position, Vector2D size, const char* title)
         Widgets::SubTab(Vector2D(position.x + 188, position.y + 50), "miscellaneous configuration", 258);
 
         break;
-
+    
     default:
         break;
     }
