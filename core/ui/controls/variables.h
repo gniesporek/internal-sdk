@@ -17,5 +17,7 @@ public:
 		static inline bool BoundingBox = false;
 		static inline bool Name = false;
 		static inline bool Health = false;
+		static inline bool WeaponText = false;
+		static inline bool Skeleton = false;
 	};
 };
