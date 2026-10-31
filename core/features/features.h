@@ -4,18 +4,9 @@
 
 #include "../../valve/globals.h"
 
+#include "../../valve/functions/bone_system.h"
+#include "../../valve/functions/hitbox_system.h"
+
 #include "prediction/prediction.h"
 #include "visuals/visuals.h"
 #include "assistance/assistance.h"
-
-
-class Features {
-public:
-
-	class Drawing  
-	{
-	public:
-		static void Paint();
-	};
-
-};
