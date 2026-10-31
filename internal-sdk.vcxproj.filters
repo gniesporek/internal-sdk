@@ -154,6 +154,9 @@
     <ClCompile Include="core\hooks\client\validate_user_command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="valve\functions\bone_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core\utils\utils.h">
@@ -637,6 +640,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="core\hooks\client\validate_user_command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\structs\structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="valve\functions\bone_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
