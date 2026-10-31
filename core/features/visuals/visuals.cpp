@@ -1,8 +1,19 @@
 #include "../features.h"
 
-void Visuals::Overlay(std::vector<Cache::Entities> entities)
+void Visuals::Paint()
 {
-	for (auto& player : entities)
+	if (!Variables::Visuals::Enable)
+		return;
+
+	if (!Interfaces::pEngineClient->IsInGame() || !Interfaces::pEngineClient->IsConnected()) {
+		return;
+	}
+
+	auto cachedEntities = Cache::GetEntitiesFromCache();
+	if (cachedEntities.empty())
+		return;
+
+	for (auto& player : cachedEntities)
 	{
 		if (!player.pPlayerController)
 			continue;
@@ -29,13 +40,14 @@ void Visuals::Overlay(std::vector<Cache::Entities> entities)
 		Box(bbox);
 		Name(player.pPlayerController, bbox);
 		HealthBar(pPlayerPawn, bbox);
-
+		WeaponText(pPlayerPawn, bbox);
+		Skeleton(pPlayerPawn);
 
 		// aimbot logic target
 		if (Variables::Assistance::Enable && Variables::Assistance::RenderTarget)
 		{
 			if (!Assistance::GetTargetEntity())
-				return;
+				continue;
 
 			C_CSPlayerPawn* pTargetPawn = Assistance::GetTargetEntity();
 
@@ -64,6 +76,10 @@ void Visuals::Name(CCSPlayerController* pController, BoundingBox bbox)
 	if (!Variables::Visuals::Name)
 		return;
 
+	const char* rawName = pController->GetName();
+	if (!rawName)
+		return;
+
 	std::string playerName = pController->GetName();
 	if (playerName.empty())
 		return;
@@ -72,7 +88,6 @@ void Visuals::Name(CCSPlayerController* pController, BoundingBox bbox)
 	const int centerX = bbox.x + (bbox.w / 2) - (textWidth / 2);
 
 	RenderStackSystem::Text::Shadow(ImGui::GetFont(), centerX, bbox.y - 15, playerName.c_str(), Colors::White(), Colors::Black(180), 1.f, false);
-
 }
 
 void Visuals::HealthBar(C_CSPlayerPawn* pPlayerPawn, BoundingBox bbox)
@@ -107,4 +122,70 @@ void Visuals::HealthBar(C_CSPlayerPawn* pPlayerPawn, BoundingBox bbox)
 	RenderStackSystem::Rect::Fill(barX - 1, bbox.y - 1, barWidth + 2, bbox.h + 2, outlineColor);
 	RenderStackSystem::Rect::Fill(barX, bbox.y, barWidth, bbox.h, backgroundColor);
 	RenderStackSystem::Rect::Fill(barX, barY, barWidth, barHeight, healthColor);
+}
+
+void Visuals::WeaponText(C_CSPlayerPawn* pPawn, BoundingBox bbox)
+{
+	if (!Variables::Visuals::WeaponText)
+		return;
+
+	CPlayer_WeaponServices* pWeaponServices = pPawn->GetWeaponServices();
+	if (!pWeaponServices)
+		return;
+
+	if (!pWeaponServices->GetWeaponHandle().IsValid())
+		return;
+
+	C_BaseEntity* pWeaponEntity = (C_BaseEntity*)EntitySystem::GetEntityByHandle(pWeaponServices->GetWeaponHandle());
+	if (!pWeaponEntity)
+		return;
+
+	CCStrike15ItemDefinition* ItemSystem = pWeaponEntity->GetAttributeManager().GetEconItemView().GetEconItemSystem();
+	if (!ItemSystem)
+		return;
+
+	std::string weaponName = ItemSystem->GetName();
+	if (weaponName.empty())
+		return;
+
+	int textWidth = RenderStackSystem::Text::GetTextWidth(ImGui::GetFont(), weaponName.c_str());
+
+	int centerX = bbox.x + (bbox.w / 2) - (textWidth / 2);
+
+	int drawY = bbox.y + bbox.h + 2;
+
+	RenderStackSystem::Text::Shadow(ImGui::GetFont(), centerX, drawY, weaponName.c_str(), Colors::White(), Colors::Black(180), 1.f, false);
+}
+
+void Visuals::Skeleton(C_CSPlayerPawn* pPawn)
+{
+	if (!Variables::Visuals::Skeleton)
+		return;
+
+	CGameSceneNode* pSceneNode = pPawn->GetSceneNode();
+	if (!pSceneNode)
+		return;
+
+	BoneSystem::CalculateBones((CSkeletonInstance*)pSceneNode, 0xFFFFF);
+
+	CModelState modelState = pSceneNode->GetModelState();
+
+	CBoneData* bonesData = modelState.GetBoneData;
+	if (!bonesData)
+		return;
+
+	for (auto& pair : bonePairs)
+	{
+		Vector3D from = bonesData[pair[0]].position;
+		Vector3D to = bonesData[pair[1]].position;
+
+		if (from.IsZero() || to.IsZero())
+			continue;
+
+		Vector2D screenFrom, screenTo;
+		if (Math::WorldToScreen(from, screenFrom) && Math::WorldToScreen(to, screenTo))
+		{
+			RenderStackSystem::Line::Draw(screenFrom, screenTo, Colors::White());
+		}
+	}
 }
