@@ -27,6 +27,9 @@ enum class ConsoleColor : WORD {
 #define PAD_MAKE(a, b) PAD_CONCAT(a, b)
 #define PAD(size) char PAD_MAKE(pad_, __COUNTER__)[size];
 
+#define PAD_OFFSET(type, name , offset) \
+ inline type& name() { return *reinterpret_cast<type*>(reinterpret_cast<uintptr_t>(this) + offset); }
+
 #define TICK_INTERVAL			0.015625f
 #define TIME_TO_TICKS( dt )		( (int)( 0.5f + (float)(dt) / TICK_INTERVAL ) )
 #define TICKS_TO_TIME( t )		( TICK_INTERVAL *( t ) )
