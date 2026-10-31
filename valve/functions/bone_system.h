@@ -1,0 +1,63 @@
+#pragma once
+
+#include "../classes/classes.h"
+
+#include "../globals.h"
+
+enum EBoneFlags : uint32_t
+{
+    FLAG_NO_BONE_FLAGS = 0x0,
+    FLAG_BONEFLEXDRIVER = 0x4,
+    FLAG_CLOTH = 0x8,
+    FLAG_PHYSICS = 0x10,
+    FLAG_ATTACHMENT = 0x20,
+    FLAG_ANIMATION = 0x40,
+    FLAG_MESH = 0x80,
+    FLAG_HITBOX = 0x100,
+    FLAG_BONE_USED_BY_VERTEX_LOD0 = 0x400,
+    FLAG_BONE_USED_BY_VERTEX_LOD1 = 0x800,
+    FLAG_BONE_USED_BY_VERTEX_LOD2 = 0x1000,
+    FLAG_BONE_USED_BY_VERTEX_LOD3 = 0x2000,
+    FLAG_BONE_USED_BY_VERTEX_LOD4 = 0x4000,
+    FLAG_BONE_USED_BY_VERTEX_LOD5 = 0x8000,
+    FLAG_BONE_USED_BY_VERTEX_LOD6 = 0x10000,
+    FLAG_BONE_USED_BY_VERTEX_LOD7 = 0x20000,
+    FLAG_BONE_MERGE_READ = 0x40000,
+    FLAG_BONE_MERGE_WRITE = 0x80000,
+    FLAG_ALL_BONE_FLAGS = 0xfffff,
+    BLEND_PREALIGNED = 0x100000,
+    FLAG_RIGIDLENGTH = 0x200000,
+    FLAG_PROCEDURAL = 0x400000,
+};
+
+// bone indexes
+enum EBoneIndex {
+    BONE_ROOT_MOTION = 0,
+    BONE_PELVIS = 1,
+    BONE_SPINE_0 = 2,
+    BONE_SPINE_1 = 3,
+    BONE_SPINE_2 = 4,
+    BONE_SPINE_3 = 5,
+    BONE_NECK_0 = 6,
+    BONE_HEAD_0 = 7,
+    BONE_CLAVICLE_L = 8,
+    BONE_ARM_UPPER_L = 9,
+    BONE_ARM_LOWER_L = 10,
+    BONE_HAND_L = 11,
+    BONE_CLAVICLE_R = 12,
+    BONE_ARM_UPPER_R = 13,
+    BONE_ARM_LOWER_R = 14,
+    BONE_HAND_R = 15,
+    BONE_JIGGLE_PRIMARY = 16,
+    BONE_LEG_UPPER_L = 17,
+    BONE_LEG_LOWER_L = 18,
+    BONE_ANKLE_L = 19,
+    BONE_LEG_UPPER_R = 20,
+    BONE_LEG_LOWER_R = 21,
+    BONE_ANKLE_R = 22
+};
+
+class BoneSystem {
+public:
+    static void CalculateBones(CSkeletonInstance* pSkeleton, int mask);
+};
