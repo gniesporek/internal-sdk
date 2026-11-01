@@ -52,6 +52,8 @@ void Visuals::Paint()
 				continue;
 
 			C_CSPlayerPawn* pTargetPawn = Assistance::GetTargetEntity();
+			if (!pTargetPawn || !pTargetPawn->IsEntityAlive())
+				continue;
 
 			if (!Math::CalculateBoundingBox(pTargetPawn, bbox, false))
 				continue;
