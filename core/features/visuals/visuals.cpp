@@ -48,10 +48,8 @@ void Visuals::Paint()
 		// aimbot logic target
 		if (Variables::Assistance::Enable && Variables::Assistance::RenderTarget)
 		{
-			if (!Assistance::GetTargetEntity())
-				continue;
-
 			C_CSPlayerPawn* pTargetPawn = Assistance::GetTargetEntity();
+
 			if (!pTargetPawn || !pTargetPawn->IsEntityAlive())
 				continue;
 
